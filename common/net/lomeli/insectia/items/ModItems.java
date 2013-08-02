@@ -2,6 +2,8 @@ package net.lomeli.insectia.items;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
+import net.lomeli.insectia.api.EnumNetType;
+import net.lomeli.insectia.api.EnumNetType.EnumNetTypeHelper;
 import net.lomeli.insectia.items.bugs.ItemBWidow;
 import net.lomeli.insectia.items.bugs.ItemFireAnts;
 import net.lomeli.insectia.lib.ItemIDs;
@@ -58,25 +60,25 @@ public class ModItems {
 		fertilizer = new ItemGeneric(ItemIDs.fertilizerID, "fertilizer").setUnlocalizedName("fertilizer");
 		
 		//Spiders
-		bRecluseSpider = new ItemBugs(ItemIDs.bRecluseSpiderID, "bugs/bRecluseSpider", spiderProduction)
+		bRecluseSpider = new ItemBugs(ItemIDs.bRecluseSpiderID, "bugs/bRecluseSpider", spiderProduction, 5, 150)
 			.setUnlocalizedName("bRecluseSpider");
-		longLegSpider = new ItemBugs(ItemIDs.longLegSpiderID, "bugs/longLegSpider", spiderProduction)
+		longLegSpider = new ItemBugs(ItemIDs.longLegSpiderID, "bugs/longLegSpider", spiderProduction, 5, 130)
 			.setUnlocalizedName("longLegSpider");
-		bWidowSpider = new ItemBWidow(ItemIDs.bWidowSpiderID, "bugs/bWidowSpider", spiderProduction)
+		bWidowSpider = new ItemBWidow(ItemIDs.bWidowSpiderID, "bugs/bWidowSpider", spiderProduction, 5, 175)
 			.setUnlocalizedName("bWidownSpider");
 		
 		//Ants
-		fireAnts = new ItemFireAnts(ItemIDs.fireAntsID, "bugs/fireAnts", antProduction)
+		fireAnts = new ItemFireAnts(ItemIDs.fireAntsID, "bugs/fireAnts", antProduction, 60, 90)
 			.setUnlocalizedName("fireAnts");
-		armyAnts = new ItemBugs(ItemIDs.armyAntsID, "bugs/armyAnts", antProduction)
+		armyAnts = new ItemBugs(ItemIDs.armyAntsID, "bugs/armyAnts", antProduction, 20, 75)
 			.setUnlocalizedName("armyAnts");
 		
 		//Silk Worms
-		greenWorm = new ItemBugs(ItemIDs.greenWormID, "bugs/greenWorm", silkProduction)
+		greenWorm = new ItemBugs(ItemIDs.greenWormID, "bugs/greenWorm", silkProduction, 25, 125)
 			.setUnlocalizedName("greenSilkWorm");
 		
 		//Dung Beetle
-		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", beetleProduction)
+		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", beetleProduction, 40, 60)
 			.setUnlocalizedName("dungBeetle");
 		
 		//Tools

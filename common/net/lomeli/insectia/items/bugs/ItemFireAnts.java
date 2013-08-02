@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 public class ItemFireAnts extends ItemBugs{
 
 	private Random rand;
-	public ItemFireAnts(int par1, String texture, Item[] producedItems) {
-		super(par1, texture, producedItems);
+	public ItemFireAnts(int par1, String texture, Item[] producedItems, int chance, int time) {
+		super(par1, texture, producedItems, chance, time);
 	}
 
 	@Override

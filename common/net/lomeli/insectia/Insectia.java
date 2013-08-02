@@ -1,11 +1,13 @@
 package net.lomeli.insectia;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
+import net.lomeli.insectia.core.CommonProxy;
 import net.lomeli.insectia.core.ConfigMod;
 import net.lomeli.insectia.core.CreativeTabMod;
 import net.lomeli.insectia.items.ModItems;
@@ -19,6 +21,9 @@ public class Insectia {
 	@Mod.Instance(ModStrings.MOD_ID)
 	public static Insectia instance;
 	
+	@SidedProxy(clientSide="net.lomeli.insectia.core.ClientProxy", serverSide="net.lomeli.insectia.core.CommonProxy")
+	public static CommonProxy proxy;
+	
 	public static CreativeTabs modTab = new CreativeTabMod(CreativeTabs.getNextID(), ModStrings.MOD_NAME);
 	
 	private static ConfigMod modConfiguration;
@@ -29,6 +34,8 @@ public class Insectia {
 		modConfiguration.configureMod(event.getSuggestedConfigurationFile());
 		
 		ModItems.loadItems();
+		
+		proxy.registerTileEntities();
 	}
 	
 	@Mod.EventHandler
