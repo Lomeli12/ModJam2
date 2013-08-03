@@ -19,6 +19,8 @@ public class ModBlocks {
 			.setUnlocalizedName("insectlivingquarters");
 		frameBlock = new BlockFrameBlock(BlockIDs.frameBlockID, Material.wood, "frameblock")
 			.setUnlocalizedName("frameblock");
+		statusBlock = new BlockStatusBlock(BlockIDs.statusBlockID, "statusblock")
+			.setUnlocalizedName("statusBlock");
 		
 		registerBlocks();
 	}
@@ -35,8 +37,10 @@ public class ModBlocks {
 		smellyQuarters = new ItemStack(livingQuartersBlock, 1, 3);
 		
 		GameRegistry.registerBlock(frameBlock, "Frame Block");
+		GameRegistry.registerBlock(statusBlock, "Status Block");
 		
 		LanguageRegistry.addName(frameBlock, "Frame Block");
+		LanguageRegistry.addName(statusBlock, "Status Block");
 	}
 
 }

@@ -98,9 +98,8 @@ public class BlockLivingQuarters extends BlockContainer{
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		if(tile != null){
 			if(tile instanceof IInventory){
-				IInventory blockInventory = (IInventory)tile;
-				for(int i = 1; i < blockInventory.getSizeInventory(); i++){
-					ItemStack stack = blockInventory.getStackInSlot(i);
+				for(int i = 1; i < ((IInventory)tile).getSizeInventory(); i++){
+					ItemStack stack = ((IInventory)tile).getStackInSlot(i);
 					if(stack != null && stack.stackSize > 0){
 						EntityItem entity = new EntityItem(world, x, y, z, 
 							new ItemStack(stack.getItem(), stack.stackSize, stack.getItemDamage()));
@@ -108,7 +107,7 @@ public class BlockLivingQuarters extends BlockContainer{
 							entity.getEntityItem().setTagCompound((NBTTagCompound)stack.getTagCompound().copy());
 						
 						world.spawnEntityInWorld(entity);
-						stack.stackSize = 0;
+						((IInventory)tile).setInventorySlotContents(i, null);
 					}
 				}
 			}
