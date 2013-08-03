@@ -69,10 +69,10 @@ public class BlockLivingQuarters extends BlockContainer{
 						tileEntity.isItemValidForSlot(0, entityPlayer.inventory.getCurrentItem()) &&
 						tileEntity.getStackInSlot(0) == null){
 						System.out.println("Helllo");
-						tileEntity.setInventorySlotContents(i, entityPlayer.inventory.getCurrentItem());
-						entityPlayer.inventory.consumeInventoryItem(entityPlayer.inventory.currentItem);
+						tileEntity.setInventorySlotContents(0, entityPlayer.inventory.getCurrentItem());
+						entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem, null);
 					}
-					else if(entityPlayer.inventory.getCurrentItem() == null && tileEntity.getStackInSlot(0) != null){
+					else if(tileEntity.getStackInSlot(0) != null){
 						entityPlayer.inventory.addItemStackToInventory(tileEntity.getStackInSlot(0));
 						tileEntity.setInventorySlotContents(0, null);
 						System.out.println("Hil");

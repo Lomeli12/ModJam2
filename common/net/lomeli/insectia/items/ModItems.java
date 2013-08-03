@@ -8,6 +8,7 @@ import net.lomeli.insectia.api.InsectRegistry;
 import net.lomeli.insectia.api.EnumNetType.EnumNetTypeHelper;
 import net.lomeli.insectia.items.bugs.ItemBWidow;
 import net.lomeli.insectia.items.bugs.ItemFireAnts;
+import net.lomeli.insectia.items.bugs.ItemRedWorms;
 import net.lomeli.insectia.lib.ItemIDs;
 
 import net.minecraft.item.Item;
@@ -22,7 +23,7 @@ public class ModItems {
 	public static Item fireAnts, armyAnts;
 	
 	/* Silk Worms */
-	public static Item greenWorm;
+	public static Item greenWorm, redWorm, pinkWorm;
 	
 	/* Other */
 	public static Item dungBeetles;
@@ -86,6 +87,8 @@ public class ModItems {
 		//Silk Worms
 		greenWorm = new ItemBugs(ItemIDs.greenWormID, "bugs/greenWorm", 
 			silkProduction, 25, 125, EnumInsectQuartersType.GREEN, 10).setUnlocalizedName("greenSilkWorm");
+		redWorm = new ItemRedWorms(ItemIDs.redWormID, "bugs/redWorm", silkProduction, 40, 60,
+			EnumInsectQuartersType.GREEN, 10).setUnlocalizedName("redSilkWorm");
 		
 		//Dung Beetle
 		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", 
@@ -127,6 +130,7 @@ public class ModItems {
 		LanguageRegistry.addName(armyAnts, "Army Ants");
 		
 		LanguageRegistry.addName(greenWorm, "Green Silk Worm");
+		LanguageRegistry.addName(redWorm, "Red Silk Worm");
 		
 		LanguageRegistry.addName(dungBeetles, "Dung Beetle");
 		
@@ -137,6 +141,6 @@ public class ModItems {
 		InsectRegistry.getInstance().registerInsect(armyAnts, true);
 		InsectRegistry.getInstance().registerInsect(greenWorm, true);
 		InsectRegistry.getInstance().registerInsect(dungBeetles, true);
-		
+		InsectRegistry.getInstance().registerInsect(redWorm, true);
 	}
 }

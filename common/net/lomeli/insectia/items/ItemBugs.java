@@ -16,6 +16,7 @@ public class ItemBugs extends ItemGeneric implements IBugs{
 	private int time;
 	private EnumInsectQuartersType  quartersType;
 	private Random randomItem = new Random();
+	
 	public ItemBugs(int par1, String texture, ItemStack[] producedItems, 
 		int dropChance, int time, EnumInsectQuartersType quartersType, int lifeSpan) {
 		super(par1, texture);

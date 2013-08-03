@@ -46,9 +46,11 @@ public class ConfigMod {
 		
 		//SilkWorms
 		ItemIDs.greenWormID = config.get("Bugs", "GreenSilkWorm", 666).getInt(666);
+		ItemIDs.redWormID = config.get("Bugs", "RedSilkWorm", 667).getInt(667);
+		ItemIDs.pinkWormID = config.get("Bugs", "PinkSilkWorm", 668).getInt(668);
 		
 		//DungBeetles
-		ItemIDs.dungBeetlesID = config.get("Bugs", "DungBeetle", 667).getInt(667);
+		ItemIDs.dungBeetlesID = config.get("Bugs", "DungBeetle", 669).getInt(669);
 		
 		//Tools
 		ItemIDs.webNetID = config.get("Tools", "webNet", 680).getInt(680);

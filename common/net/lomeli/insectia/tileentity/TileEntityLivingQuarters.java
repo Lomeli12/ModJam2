@@ -28,9 +28,18 @@ public class TileEntityLivingQuarters extends TileEntity
 	
 	public void producedItem(IBugs item, int num){
 		for(int i = 0; i < num; i++){
-			this.inventory[i+1] = item.getRandomItem();
+			ItemStack randItem = item.getRandomItem();
+			if(randItem != null && this.isItemValidForSlot(i+1, randItem))
+				this.inventory[i+1] = randItem.copy();
 		}
-		item.hurtBug(this.inventory[0], num);
+		int damage = num;
+		if(this.quartersType.equals(item.getPreferedLivingType()))
+			damage--;
+		
+		item.hurtBug(this.inventory[0], damage);
+		
+		if(this.inventory[0].getItemDamage() >= this.inventory[0].getMaxDamage())
+			this.inventory[0] = null;
 	}
 	
 	@Override
@@ -39,18 +48,21 @@ public class TileEntityLivingQuarters extends TileEntity
 		if(!this.worldObj.isRemote){
 			if(this.inventory[0] != null && (this.inventory[0].getItem() instanceof IBugs)){
 				tick++;
-				if(tick >= ((IBugs)this.inventory[0].getItem()).getProductionTime()){
+				if(tick >= ((IBugs)this.inventory[0].getItem()).getProductionTime() * 10){
 					int j = rand.nextInt(1 + ((IBugs)this.inventory[0].getItem()).getItemsProduced().length);
 					
 					if(j == ((IBugs)this.inventory[0].getItem()).getItemsProduced().length){
 						if(!((IBugs)this.inventory[0].getItem()).getPreferedLivingType().equals(this.getQuartersType()))
 							((IBugs)this.inventory[0].getItem()).hurtBug(this.inventory[0], 1);
 					}
+					else if(this.getStackInSlot(1) != null && this.getStackInSlot(2) != null 
+						&& this.getStackInSlot(3) != null)
+						tick = 0;
 					else
-						producedItem(((IBugs)this.inventory[0].getItem()), j);
+						producedItem(((IBugs)this.inventory[0].getItem()), j - 1);
 					
-					if(rand.nextInt(100) < ModInts.chanceOfBite)
-						((IBugs)this.inventory[0].getItem()).getEffectOnNerbyEntities(worldObj, xCoord, yCoord, zCoord);
+					//if(rand.nextInt(100) < ModInts.chanceOfBite)
+					//	((IBugs)this.inventory[0].getItem()).getEffectOnNerbyEntities(worldObj, xCoord, yCoord, zCoord);
 					
 					tick = 0;
 				}
@@ -109,7 +121,7 @@ public class TileEntityLivingQuarters extends TileEntity
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 0;
+		return 64;
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class ItemBWidow extends ItemBugs{
 			if(updateTick >= 30){
 				int roll = rand.nextInt(100);
 				if(roll < ModInts.chanceOfBite){
-					((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 30));
+					((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 10000));
 				}
 				updateTick = 0;
 			}
@@ -47,7 +47,7 @@ public class ItemBWidow extends ItemBugs{
 				AxisAlignedBB.getAABBPool().getAABB(x-5, y, z-5, x+5, y, z+5));
 			for(Object livingEntity : nearbyEntities.toArray()){
 				if(livingEntity instanceof EntityLiving){
-					((EntityLiving) livingEntity).addPotionEffect(new PotionEffect(Potion.poison.id, 10));
+					((EntityLiving) livingEntity).addPotionEffect(new PotionEffect(Potion.poison.id, 10000));
 				}
 			}
 		}
