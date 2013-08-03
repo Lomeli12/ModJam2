@@ -8,3 +8,7 @@ For modjam, things will be really simple, with only 4 (possibly 5?) types of ins
 ### Watch the livestream!
 
 http://twitch.tv/lomeli12
+
+### Want to test the Beta Builds?
+
+Get them at: http://anthony-lomeli.net/MinecraftMods/ModJam2/
