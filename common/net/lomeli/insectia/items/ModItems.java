@@ -11,6 +11,7 @@ import net.lomeli.insectia.items.bugs.ItemFireAnts;
 import net.lomeli.insectia.lib.ItemIDs;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class ModItems {
 
@@ -30,19 +31,19 @@ public class ModItems {
 	
 	//Spiders
 	public static Item stickyString, trappedBug;
-	public static Item[] spiderProduction = new Item[]{ stickyString, trappedBug };
+	public static ItemStack[] spiderProduction;
 	
 	//Ants
 	public static Item leaf, appleBit, cookieCrumb, breadCrumb, steakPiece;
-	public static Item[] antProduction = new Item[]{leaf, appleBit, cookieCrumb, breadCrumb, steakPiece};
+	public static ItemStack[] antProduction;
 	
 	//Silk Worms
 	public static Item silk, woolFluff;
-	public static Item[] silkProduction = new Item[]{silk, woolFluff};
+	public static ItemStack[] silkProduction;
 	
 	//Dung Beetles
 	public static Item dung, fertilizer;
-	public static Item[] beetleProduction = new Item[]{dung, fertilizer};
+	public static ItemStack[] beetleProduction;
 	
 	/* Tools */
 	public static Item webNet, dirtNet, sandNet, leafNet;
@@ -61,27 +62,34 @@ public class ModItems {
 		dung = new ItemGeneric(ItemIDs.dungID, "dung").setUnlocalizedName("dungball");
 		fertilizer = new ItemGeneric(ItemIDs.fertilizerID, "fertilizer").setUnlocalizedName("fertilizer");
 		
+		spiderProduction = new ItemStack[]{ new ItemStack(stickyString), 
+				new ItemStack(trappedBug) };
+		antProduction = new ItemStack[]{new ItemStack(leaf), new ItemStack(appleBit), 
+				new ItemStack(cookieCrumb), new ItemStack(breadCrumb), new ItemStack(steakPiece)};
+		silkProduction = new ItemStack[]{new ItemStack(silk), new ItemStack(woolFluff)};
+		beetleProduction = new ItemStack[]{new ItemStack(dung), new ItemStack(fertilizer)};
+		
 		//Spiders
 		bRecluseSpider = new ItemBugs(ItemIDs.bRecluseSpiderID, "bugs/bRecluseSpider", 
-			spiderProduction, 5, 150, EnumInsectQuartersType.DARK).setUnlocalizedName("bRecluseSpider");
+			spiderProduction, 5, 150, EnumInsectQuartersType.DARK, 3).setUnlocalizedName("bRecluseSpider");
 		longLegSpider = new ItemBugs(ItemIDs.longLegSpiderID, "bugs/longLegSpider", 
-			spiderProduction, 5, 130, EnumInsectQuartersType.DARK).setUnlocalizedName("longLegSpider");
+			spiderProduction, 5, 130, EnumInsectQuartersType.DARK, 4).setUnlocalizedName("longLegSpider");
 		bWidowSpider = new ItemBWidow(ItemIDs.bWidowSpiderID, "bugs/bWidowSpider", 
-			spiderProduction, 5, 175, EnumInsectQuartersType.DARK).setUnlocalizedName("bWidownSpider");
+			spiderProduction, 5, 175, EnumInsectQuartersType.DARK, 3).setUnlocalizedName("bWidownSpider");
 		
 		//Ants
 		fireAnts = new ItemFireAnts(ItemIDs.fireAntsID, "bugs/fireAnts", 
-			antProduction, 60, 90, EnumInsectQuartersType.SWEET).setUnlocalizedName("fireAnts");
+			antProduction, 60, 90, EnumInsectQuartersType.SWEET, 20).setUnlocalizedName("fireAnts");
 		armyAnts = new ItemBugs(ItemIDs.armyAntsID, "bugs/armyAnts", 
-			antProduction, 20, 75, EnumInsectQuartersType.SWEET).setUnlocalizedName("armyAnts");
+			antProduction, 20, 75, EnumInsectQuartersType.SWEET, 17).setUnlocalizedName("armyAnts");
 		
 		//Silk Worms
 		greenWorm = new ItemBugs(ItemIDs.greenWormID, "bugs/greenWorm", 
-			silkProduction, 25, 125, EnumInsectQuartersType.GREEN).setUnlocalizedName("greenSilkWorm");
+			silkProduction, 25, 125, EnumInsectQuartersType.GREEN, 10).setUnlocalizedName("greenSilkWorm");
 		
 		//Dung Beetle
 		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", 
-			beetleProduction, 40, 60, EnumInsectQuartersType.SMELLY).setUnlocalizedName("dungBeetle");
+			beetleProduction, 40, 60, EnumInsectQuartersType.SMELLY, 40).setUnlocalizedName("dungBeetle");
 		
 		//Tools
 		webNet = new ItemBugNet(ItemIDs.webNetID, "tools/webnet", EnumNetType.WEB).setUnlocalizedName("spiderNet");
@@ -129,5 +137,6 @@ public class ModItems {
 		InsectRegistry.getInstance().registerInsect(armyAnts, true);
 		InsectRegistry.getInstance().registerInsect(greenWorm, true);
 		InsectRegistry.getInstance().registerInsect(dungBeetles, true);
+		
 	}
 }

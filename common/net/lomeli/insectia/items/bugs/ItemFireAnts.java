@@ -15,9 +15,9 @@ public class ItemFireAnts extends ItemBugs{
 
 	private Random rand = new Random();
 	private int tick;
-	public ItemFireAnts(int par1, String texture, Item[] producedItems, 
-		int chance, int time, EnumInsectQuartersType type) {
-		super(par1, texture, producedItems, chance, time, type);
+	public ItemFireAnts(int par1, String texture, ItemStack[] producedItems, 
+		int chance, int time, EnumInsectQuartersType type, int lifeSpan) {
+		super(par1, texture, producedItems, chance, time, type, lifeSpan);
 	}
 
 	@Override

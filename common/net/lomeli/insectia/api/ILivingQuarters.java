@@ -10,4 +10,6 @@ public interface ILivingQuarters {
 	
 	public EnumInsectQuartersType getQuartersType();
 
+	public void setQuartersType(EnumInsectQuartersType type);
+
 }

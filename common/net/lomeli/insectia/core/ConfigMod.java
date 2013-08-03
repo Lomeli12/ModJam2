@@ -2,6 +2,7 @@ package net.lomeli.insectia.core;
 
 import java.io.File;
 
+import net.lomeli.insectia.lib.BlockIDs;
 import net.lomeli.insectia.lib.ItemIDs;
 import net.lomeli.insectia.lib.ModInts;
 import net.minecraftforge.common.Configuration;
@@ -62,6 +63,10 @@ public class ConfigMod {
 		Configuration config = new Configuration(configFile);
 		
 		config.load();
+		
+		BlockIDs.livingQuartersID = config.get("Blocks", "insectLivingQuarters", 630).getInt(630);
+		BlockIDs.frameBlockID = config.get("Blocks", "frameBlock", 631).getInt(631);
+		BlockIDs.statusBlockID = config.get("Blocks", "statusBlock", 632).getInt(632);
 		
 		config.save();
 	}

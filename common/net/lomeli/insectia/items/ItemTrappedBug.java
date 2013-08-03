@@ -14,6 +14,7 @@ public class ItemTrappedBug extends ItemGeneric {
 	private Random rand= new Random();
 	public ItemTrappedBug(int par1, String texture) {
 		super(par1, texture);
+		this.setMaxStackSize(1);
 	}
 	
 	@Override

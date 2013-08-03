@@ -7,6 +7,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
+import net.lomeli.insectia.blocks.ModBlocks;
 import net.lomeli.insectia.core.CommonProxy;
 import net.lomeli.insectia.core.ConfigMod;
 import net.lomeli.insectia.core.CreativeTabMod;
@@ -33,6 +34,7 @@ public class Insectia {
 		modConfiguration = new ConfigMod();
 		modConfiguration.configureMod(event.getSuggestedConfigurationFile());
 		
+		ModBlocks.loadBlocks();
 		ModItems.loadItems();
 		
 		proxy.registerTileEntities();

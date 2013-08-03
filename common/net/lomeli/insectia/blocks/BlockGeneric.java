@@ -1,5 +1,6 @@
 package net.lomeli.insectia.blocks;
 
+import net.lomeli.insectia.Insectia;
 import net.lomeli.insectia.lib.ModStrings;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,6 +12,7 @@ public class BlockGeneric extends Block{
 	public BlockGeneric(int par1, Material par2Material, String texture) {
 		super(par1, par2Material);
 		blockTexture = texture;
+		this.setCreativeTab(Insectia.modTab);
 	}
 	
 	@Override
