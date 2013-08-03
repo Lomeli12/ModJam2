@@ -3,6 +3,8 @@ package net.lomeli.insectia.items;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 import net.lomeli.insectia.api.EnumNetType;
+import net.lomeli.insectia.api.EnumInsectQuartersType;
+import net.lomeli.insectia.api.InsectRegistry;
 import net.lomeli.insectia.api.EnumNetType.EnumNetTypeHelper;
 import net.lomeli.insectia.items.bugs.ItemBWidow;
 import net.lomeli.insectia.items.bugs.ItemFireAnts;
@@ -48,7 +50,7 @@ public class ModItems {
 	public static void loadItems(){
 		//Produced Items
 		stickyString = new ItemGeneric(ItemIDs.stickyStringID, "stickysilk").setUnlocalizedName("stickyString");
-		trappedBug = new ItemGeneric(ItemIDs.trappedBugID, "trappedBug").setUnlocalizedName("trappedBug");
+		trappedBug = new ItemTrappedBug(ItemIDs.trappedBugID, "trappedBug").setUnlocalizedName("trappedBug");
 		leaf = new ItemGeneric(ItemIDs.leafID, "leaf").setUnlocalizedName("leaf");
 		appleBit = new ItemGeneric(ItemIDs.appleBitID, "apple").setUnlocalizedName("applebit");
 		cookieCrumb = new ItemGeneric(ItemIDs.cookieCrumbID, "cookie").setUnlocalizedName("cookieCrum");
@@ -60,26 +62,26 @@ public class ModItems {
 		fertilizer = new ItemGeneric(ItemIDs.fertilizerID, "fertilizer").setUnlocalizedName("fertilizer");
 		
 		//Spiders
-		bRecluseSpider = new ItemBugs(ItemIDs.bRecluseSpiderID, "bugs/bRecluseSpider", spiderProduction, 5, 150)
-			.setUnlocalizedName("bRecluseSpider");
-		longLegSpider = new ItemBugs(ItemIDs.longLegSpiderID, "bugs/longLegSpider", spiderProduction, 5, 130)
-			.setUnlocalizedName("longLegSpider");
-		bWidowSpider = new ItemBWidow(ItemIDs.bWidowSpiderID, "bugs/bWidowSpider", spiderProduction, 5, 175)
-			.setUnlocalizedName("bWidownSpider");
+		bRecluseSpider = new ItemBugs(ItemIDs.bRecluseSpiderID, "bugs/bRecluseSpider", 
+			spiderProduction, 5, 150, EnumInsectQuartersType.DARK).setUnlocalizedName("bRecluseSpider");
+		longLegSpider = new ItemBugs(ItemIDs.longLegSpiderID, "bugs/longLegSpider", 
+			spiderProduction, 5, 130, EnumInsectQuartersType.DARK).setUnlocalizedName("longLegSpider");
+		bWidowSpider = new ItemBWidow(ItemIDs.bWidowSpiderID, "bugs/bWidowSpider", 
+			spiderProduction, 5, 175, EnumInsectQuartersType.DARK).setUnlocalizedName("bWidownSpider");
 		
 		//Ants
-		fireAnts = new ItemFireAnts(ItemIDs.fireAntsID, "bugs/fireAnts", antProduction, 60, 90)
-			.setUnlocalizedName("fireAnts");
-		armyAnts = new ItemBugs(ItemIDs.armyAntsID, "bugs/armyAnts", antProduction, 20, 75)
-			.setUnlocalizedName("armyAnts");
+		fireAnts = new ItemFireAnts(ItemIDs.fireAntsID, "bugs/fireAnts", 
+			antProduction, 60, 90, EnumInsectQuartersType.SWEET).setUnlocalizedName("fireAnts");
+		armyAnts = new ItemBugs(ItemIDs.armyAntsID, "bugs/armyAnts", 
+			antProduction, 20, 75, EnumInsectQuartersType.SWEET).setUnlocalizedName("armyAnts");
 		
 		//Silk Worms
-		greenWorm = new ItemBugs(ItemIDs.greenWormID, "bugs/greenWorm", silkProduction, 25, 125)
-			.setUnlocalizedName("greenSilkWorm");
+		greenWorm = new ItemBugs(ItemIDs.greenWormID, "bugs/greenWorm", 
+			silkProduction, 25, 125, EnumInsectQuartersType.GREEN).setUnlocalizedName("greenSilkWorm");
 		
 		//Dung Beetle
-		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", beetleProduction, 40, 60)
-			.setUnlocalizedName("dungBeetle");
+		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", 
+			beetleProduction, 40, 60, EnumInsectQuartersType.SMELLY).setUnlocalizedName("dungBeetle");
 		
 		//Tools
 		webNet = new ItemBugNet(ItemIDs.webNetID, "tools/webnet", EnumNetType.WEB).setUnlocalizedName("spiderNet");
@@ -119,5 +121,13 @@ public class ModItems {
 		LanguageRegistry.addName(greenWorm, "Green Silk Worm");
 		
 		LanguageRegistry.addName(dungBeetles, "Dung Beetle");
+		
+		InsectRegistry.getInstance().registerInsect(bRecluseSpider, false);
+		InsectRegistry.getInstance().registerInsect(longLegSpider, false);
+		InsectRegistry.getInstance().registerInsect(bWidowSpider, false);
+		InsectRegistry.getInstance().registerInsect(fireAnts, true);
+		InsectRegistry.getInstance().registerInsect(armyAnts, true);
+		InsectRegistry.getInstance().registerInsect(greenWorm, true);
+		InsectRegistry.getInstance().registerInsect(dungBeetles, true);
 	}
 }

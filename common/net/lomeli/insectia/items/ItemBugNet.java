@@ -44,7 +44,7 @@ public class ItemBugNet extends ItemTool implements INet{
 			for(Block destroyable : getNetType().getBlocks()){
 				if(blockID == destroyable.blockID){
 					int k = rand.nextInt(300);
-					System.out.println("Yay " + k);
+					//System.out.println("Yay " + k);
 					for(Item drops : getNetType().getDrops()){
 						if(drops instanceof IBugs){
 							if(k < ((IBugs)drops).getDropChance()){

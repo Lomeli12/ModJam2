@@ -71,7 +71,7 @@ public class ConfigMod {
 		
 		config.load();
 		
-		ModInts.chanceOfBite = config.get("Options", "ChanceOfBugBite", 60).getInt(60);
+		ModInts.chanceOfBite = config.get("Options", "ChanceOfBugBite", 40).getInt(40);
 		
 		config.save();
 	}

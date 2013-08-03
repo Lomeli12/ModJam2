@@ -1,5 +1,6 @@
 package net.lomeli.insectia.items.bugs;
 
+import net.lomeli.insectia.api.EnumInsectQuartersType;
 import net.lomeli.insectia.items.ItemBugs;
 import net.lomeli.insectia.lib.ModInts;
 
@@ -18,18 +19,23 @@ import java.util.Random;
 
 public class ItemBWidow extends ItemBugs{
 
-	private Random rand;
-	public ItemBWidow(int par1, String texture, Item[] producedItems, int chance, int time) {
-		super(par1, texture, producedItems, chance, time);
+	private Random rand = new Random();
+	private int updateTick;
+	public ItemBWidow(int par1, String texture, Item[] producedItems, 
+			int chance, int time, EnumInsectQuartersType type) {
+		super(par1, texture, producedItems, chance, time, type);
 	}
 	
 	@Override
 	public void onUpdate(ItemStack itemStack, World world, Entity entity, int par4, boolean par5){
-		rand = new Random();
 		if(world != null && entity instanceof EntityPlayer){
-			int roll = rand.nextInt(100);
-			if(roll < ModInts.chanceOfBite){
-				((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 30));
+			updateTick++;
+			if(updateTick >= 30){
+				int roll = rand.nextInt(100);
+				if(roll < ModInts.chanceOfBite){
+					((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 30));
+				}
+				updateTick = 0;
 			}
 		}
 	}

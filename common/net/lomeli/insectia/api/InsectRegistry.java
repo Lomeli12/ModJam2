@@ -5,15 +5,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+/**
+ * REGISTER YOUR BUGS HERE OR IT WILL NOT WORK!
+ * @author Anthony
+ */
 public class InsectRegistry {
 	private static final InsectRegistry instance = new InsectRegistry();
 	
-	private Map insectList = new HashMap<IBugs, Boolean>();
-	private HashMap<List<Integer>, Boolean> insectListMeta = new HashMap<List<Integer>, Boolean>();
+	private List<ItemStack> defaultRegistry = new ArrayList<ItemStack>();
+	private List<ItemStack> trappedRegistry = new ArrayList<ItemStack>();
 	
 	private InsectRegistry(){}
 	
@@ -21,52 +26,33 @@ public class InsectRegistry {
 		return instance;
 	}
 	
-	public IBugs addInsect(Item insect, boolean bool){
-		if(insect instanceof IBugs)
-			return addInsect((IBugs)insect, bool);
-		
-		return null;
-	}
-	
-	public IBugs addInsect(Item insect, int meta, boolean bool){
-		return addInsect(insect.itemID, meta, bool);
-	}
-	
-	public IBugs addInsect(int itemID, int meta, boolean bool){
-		if(Item.itemsList[itemID] instanceof IBugs){
-			this.insectListMeta.put(Arrays.asList(itemID, meta), bool);
-			return (IBugs)Item.itemsList[itemID];
+	public void registerInsect(ItemStack insect, boolean bool){
+		if(insect.getItem() instanceof IBugs){
+			if(bool)
+				trappedRegistry.add(insect);
+			
+			defaultRegistry.add(insect);
 		}
-		return null;
 	}
 	
-	public IBugs addInsect(IBugs insect, boolean bool){
-		this.insectList.put(insect, bool);
-		return insect;
+	public void registerInsect(Item insect, boolean bool){
+		registerInsect(new ItemStack(insect), bool);
+	}
+	
+	public ItemStack getRandomInsect(int rand){
+		return getTrappedRegistry().get(rand);
 	}
 	
 	public boolean isObtainableViaSpiders(ItemStack stack){
-		if(stack == null)
-			return false;
-		if(this.insectListMeta.containsKey(Arrays.asList(stack.itemID, stack.getItemDamage())))
-			return this.insectListMeta.get(Arrays.asList(stack.itemID, stack.getItemDamage()));
-		
-		return (boolean) this.insectList.get((IBugs)stack.getItem());
+		return this.trappedRegistry.contains(stack);
 	}
 	
-	public Map getInsectRegistry(){
-		return this.insectList;
+	public List<ItemStack> getPrimaryRegistry(){
+		return this.defaultRegistry;
 	}
 	
-	public Map<List<Integer>, Boolean> getMetaInsectRegistry(){
-		return this.insectListMeta;
+	public List<ItemStack> getTrappedRegistry(){
+		return this.trappedRegistry;
 	}
 	
-	public boolean doesRegistryContainBug(Item insect) {
-		return this.insectList.containsKey(insect);
-	}
-	
-	public boolean doesRegistryContainBug(IBugs insect) {
-		return this.insectList.containsKey(insect);
-	}
 }
