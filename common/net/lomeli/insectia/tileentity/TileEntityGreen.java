@@ -38,7 +38,7 @@ public class TileEntityGreen extends TileEntity
     }
 	
 	public void loadNBT(NBTTagCompound nbtTag){
-		NBTTagList list = new NBTTagList();
+		NBTTagList list = nbtTag.getTagList("Inventory");
 		for(int index = 0; index < list.tagCount(); ++index){
 			NBTTagCompound tag = (NBTTagCompound)list.tagAt(index);
 			byte slot = tag.getByte("Slot");
@@ -72,17 +72,13 @@ public class TileEntityGreen extends TileEntity
 	public void producedItem(IInsect item, int num){
 		for(int i = 0; i < num; i++){
 			ItemStack randItem = item.getRandomItem();
-			if(randItem != null && this.isItemValidForSlot(i+1, randItem))
-				this.inventory[i+1] = randItem.copy();
+			for(int j = 1; j < this.inventory.length; j++){
+				if(this.isItemValidForSlot(j, randItem)){
+					this.setInventorySlotContents(j, randItem);
+					break;
+				}
+			}	
 		}
-		int damage = num;
-		if(this.type.equals(item.getPreferedLivingType()))
-			damage--;
-		
-		item.hurtBug(this.inventory[0], damage);
-		
-		if(this.inventory[0].getItemDamage() >= this.inventory[0].getMaxDamage())
-			this.inventory[0] = null;
 	}
 	
 	@Override
@@ -91,22 +87,18 @@ public class TileEntityGreen extends TileEntity
 		if(!this.worldObj.isRemote){
 			if(this.inventory[0] != null && (this.inventory[0].getItem() instanceof IInsect)){
 				tick++;
-				if(tick >= ((IInsect)this.inventory[0].getItem()).getProductionTime() * 10){
+				if(tick >= ((IInsect)this.inventory[0].getItem()).getProductionTime()){
 					int j = rand.nextInt(1 + ((IInsect)this.inventory[0].getItem()).getItemsProduced().length);
+					producedItem(((IInsect)this.inventory[0].getItem()), j - 1);
 					
-					if(j == ((IInsect)this.inventory[0].getItem()).getItemsProduced().length){
-						if(!((IInsect)this.inventory[0].getItem()).getPreferedLivingType().equals(this.getQuartersType()))
-							((IInsect)this.inventory[0].getItem()).hurtBug(this.inventory[0], 1);
-					}
-					else if(this.getStackInSlot(1) != null && this.getStackInSlot(2) != null 
-						&& this.getStackInSlot(3) != null)
-						tick = 0;
+					if(this.getQuartersType().equals(((IInsect)this.inventory[0].getItem()).getPreferedLivingType()) && rand.nextInt(100) < 50){}
 					else
-						producedItem(((IInsect)this.inventory[0].getItem()), j - 1);
-					
+						((IInsect)this.inventory[0].getItem()).hurtBug(this.inventory[0], 1);
 					
 					tick = 0;
 				}
+				if(this.inventory[0].getItemDamage() >= this.inventory[0].getMaxDamage())
+					this.setInventorySlotContents(0, null);
 			}
 		}
 	}

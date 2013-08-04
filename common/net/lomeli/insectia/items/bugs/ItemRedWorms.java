@@ -30,9 +30,9 @@ public class ItemRedWorms extends ItemBugs{
 		if(world != null && entity instanceof EntityPlayer){
 			updateTick++;
 			if(updateTick >= 30){
-				int roll = rand.nextInt(100);
+				int roll = rand.nextInt(200);
 				if(roll < ModInts.chanceOfBite){
-					((EntityPlayer)entity).addPotionEffect(new PotionEffect(9, 10000));
+					((EntityPlayer)entity).addPotionEffect(new PotionEffect(9, 300, 1));
 				}
 				updateTick = 0;
 			}

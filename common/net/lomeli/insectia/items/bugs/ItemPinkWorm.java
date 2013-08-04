@@ -29,9 +29,9 @@ public class ItemPinkWorm extends ItemBugs{
 		if(world != null && entity instanceof EntityPlayer){
 			updateTick++;
 			if(updateTick >= 30){
-				int roll = rand.nextInt(100);
+				int roll = rand.nextInt(200);
 				if(roll < ModInts.chanceOfBite){
-					((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.heal.id, 4000));
+					((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.heal.id, 150, 1));
 				}
 				updateTick = 0;
 			}

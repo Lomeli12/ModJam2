@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
  */
 public class ItemIDs {
 	public static int bRecluseSpiderID, longLegSpiderID, bWidowSpiderID, fireAntsID, armyAntsID, 
-		greenWormID, redWormID, pinkWormID, dungBeetlesID;
+		bivoltineWormID, polyvoltineWormID, univoltineWormID, dungBeetlesID;
 	public static int stickyStringID, trappedBugID, leafID, appleBitID, 
 		cookieCrumbID, breadCrumbID, steakPieceID, silkID, woolFluffID, 
 		dungID, fertilizerID, treatedStickID;

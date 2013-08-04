@@ -1,15 +1,19 @@
 package net.lomeli.insectia.api;
 
-import net.lomeli.insectia.items.ModItems;
+import net.lomeli.insectia.api.InsectiaItems;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.EnumHelper;
 
 public enum EnumNetType {
-	DIRT(0, 2, new Item[]{ModItems.armyAnts, ModItems.fireAnts, ModItems.dungBeetles}, new Block[]{Block.dirt, Block.grass}),
-	LEAVES(1, 1, new Item[]{ModItems.greenWorm, ModItems.bWidowSpider}, new Block[]{Block.leaves}),
-	SAND(2, 3, new Item[]{ModItems.armyAnts, ModItems.fireAnts}, new Block[]{Block.sand}),
-	WEB(3, 4, new Item[]{ModItems.longLegSpider, ModItems.bRecluseSpider, ModItems.bWidowSpider}, new Block[]{Block.web, Block.sapling});
+	DIRT(0, 2, new Item[]{InsectiaItems.armyAnts.getItem(), InsectiaItems.fireAnts.getItem(), 
+		InsectiaItems.dungBeetles.getItem(), InsectiaItems.polyvoltineWorm.getItem()}, new Block[]{Block.dirt, Block.grass}),
+	LEAVES(1, 1, new Item[]{InsectiaItems.bivoltineWorm.getItem(), InsectiaItems.bWidowSpider.getItem()}, new Block[]{Block.leaves}),
+	SAND(2, 3, new Item[]{InsectiaItems.armyAnts.getItem(), InsectiaItems.fireAnts.getItem(), InsectiaItems.univoltineWorm.getItem(),
+		InsectiaItems.polyvoltineWorm.getItem()}, new Block[]{Block.sand}),
+	WEB(3, 4, new Item[]{InsectiaItems.longLegSpider.getItem(), InsectiaItems.bRecluseSpider.getItem(), 
+		InsectiaItems.bWidowSpider.getItem()}, new Block[]{Block.web, Block.sapling});
 	
 	private final int typeID, dropChance;
 	private final Item[] bugRange;

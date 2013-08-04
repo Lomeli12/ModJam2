@@ -33,7 +33,7 @@ public class ItemBWidow extends ItemBugs{
 			if(updateTick >= 30){
 				int roll = rand.nextInt(100);
 				if(roll < ModInts.chanceOfBite){
-					((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 10000));
+					((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 1));
 				}
 				updateTick = 0;
 			}

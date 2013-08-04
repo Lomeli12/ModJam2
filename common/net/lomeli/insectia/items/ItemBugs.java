@@ -35,7 +35,7 @@ public class ItemBugs extends ItemGeneric implements IInsect{
 	
 	@Override
 	public void hurtBug(ItemStack itemStack, int damage){
-		itemStack.setItemDamage(getLifeSpan() - damage);
+		itemStack.setItemDamage(this.getDamage(itemStack) + damage);
 	}
 	
 	@Override

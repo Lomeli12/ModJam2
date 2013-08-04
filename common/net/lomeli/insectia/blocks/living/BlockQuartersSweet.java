@@ -33,27 +33,26 @@ public class BlockQuartersSweet extends BlockContainer{
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, 
 		EntityPlayer entityPlayer, int i, float j, float k, float f){
-		if(entityPlayer != null){
-			TileEntitySweet tileEntity = (TileEntitySweet)world.getBlockTileEntity(x, y, z);
-			if(tileEntity != null){
-				if(!entityPlayer.isSneaking()){
-					if(entityPlayer.inventory.getCurrentItem() != null &&
-						(entityPlayer.inventory.getCurrentItem().getItem() instanceof IInsect) &&
-						tileEntity.isItemValidForSlot(0, entityPlayer.inventory.getCurrentItem()) &&
-						tileEntity.getStackInSlot(0) == null){
-						System.out.println("Helllo");
-						tileEntity.setInventorySlotContents(0, entityPlayer.inventory.getCurrentItem());
-						entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem, null);
+		if(world != null && !world.isRemote){
+			if(entityPlayer != null){
+				TileEntitySweet tileEntity = (TileEntitySweet)world.getBlockTileEntity(x, y, z);
+				if(tileEntity != null){
+					if(!entityPlayer.isSneaking()){
+						if(entityPlayer.inventory.getCurrentItem() != null &&
+							(entityPlayer.inventory.getCurrentItem().getItem() instanceof IInsect) &&
+							tileEntity.isItemValidForSlot(0, entityPlayer.inventory.getCurrentItem()) &&
+							tileEntity.getStackInSlot(0) == null){
+							tileEntity.setInventorySlotContents(0, entityPlayer.inventory.getCurrentItem());
+							entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem, null);
+						}
+						else if(tileEntity.getStackInSlot(0) != null){
+							entityPlayer.inventory.addItemStackToInventory(tileEntity.getStackInSlot(0));
+							tileEntity.setInventorySlotContents(0, null);
+						}
 					}
-					else if(tileEntity.getStackInSlot(0) != null){
-						entityPlayer.inventory.addItemStackToInventory(tileEntity.getStackInSlot(0));
-						tileEntity.setInventorySlotContents(0, null);
-						System.out.println("Hil");
+					else{
+						dropItems2(world, x, y, z);
 					}
-				}
-				else{
-					dropItems2(world, x, y, z);
-					System.out.println("Blah");
 				}
 			}
 		}
