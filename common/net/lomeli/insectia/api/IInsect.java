@@ -10,7 +10,7 @@ import net.minecraft.world.World;
  * @author Anthony
  *
  */
-public interface IBugs {
+public interface IInsect {
 	
 	public ItemStack[] getItemsProduced();
 	

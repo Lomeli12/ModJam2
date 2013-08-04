@@ -8,6 +8,7 @@ import net.lomeli.insectia.api.InsectRegistry;
 import net.lomeli.insectia.api.EnumNetType.EnumNetTypeHelper;
 import net.lomeli.insectia.items.bugs.ItemBWidow;
 import net.lomeli.insectia.items.bugs.ItemFireAnts;
+import net.lomeli.insectia.items.bugs.ItemPinkWorm;
 import net.lomeli.insectia.items.bugs.ItemRedWorms;
 import net.lomeli.insectia.lib.ItemIDs;
 
@@ -49,6 +50,9 @@ public class ModItems {
 	/* Tools */
 	public static Item webNet, dirtNet, sandNet, leafNet;
 	
+	/* Other Items */
+	public static Item treatedStick;
+	
 	public static void loadItems(){
 		//Produced Items
 		stickyString = new ItemGeneric(ItemIDs.stickyStringID, "stickysilk").setUnlocalizedName("stickyString");
@@ -62,6 +66,7 @@ public class ModItems {
 		woolFluff = new ItemGeneric(ItemIDs.woolFluffID, "wool").setUnlocalizedName("woolFluff");
 		dung = new ItemGeneric(ItemIDs.dungID, "dung").setUnlocalizedName("dungball");
 		fertilizer = new ItemGeneric(ItemIDs.fertilizerID, "fertilizer").setUnlocalizedName("fertilizer");
+		treatedStick = new ItemGeneric(ItemIDs.treatedStickID, "treatedStick").setUnlocalizedName("treatedStick");
 		
 		spiderProduction = new ItemStack[]{ new ItemStack(stickyString), 
 				new ItemStack(trappedBug) };
@@ -89,6 +94,8 @@ public class ModItems {
 			silkProduction, 25, 125, EnumInsectQuartersType.GREEN, 10).setUnlocalizedName("greenSilkWorm");
 		redWorm = new ItemRedWorms(ItemIDs.redWormID, "bugs/redWorm", silkProduction, 40, 60,
 			EnumInsectQuartersType.GREEN, 10).setUnlocalizedName("redSilkWorm");
+		pinkWorm = new ItemPinkWorm(ItemIDs.pinkWormID, "bugs/pinkWorm",
+			silkProduction, 25, 50, EnumInsectQuartersType.GREEN, 4).setUnlocalizedName("pinkSilkWorm");
 		
 		//Dung Beetle
 		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", 
@@ -121,6 +128,7 @@ public class ModItems {
 		LanguageRegistry.addName(woolFluff, "Wool Fluff");
 		LanguageRegistry.addName(dung, "Ball of Dung");
 		LanguageRegistry.addName(fertilizer, "Fertilizer");
+		LanguageRegistry.addName(treatedStick, "Treated Stick");
 		
 		LanguageRegistry.addName(bRecluseSpider, "Brown Reclusive Spider");
 		LanguageRegistry.addName(longLegSpider, "Daddy Long Leg Spider");
@@ -131,6 +139,7 @@ public class ModItems {
 		
 		LanguageRegistry.addName(greenWorm, "Green Silk Worm");
 		LanguageRegistry.addName(redWorm, "Red Silk Worm");
+		LanguageRegistry.addName(pinkWorm, "Pink Silk Worm");
 		
 		LanguageRegistry.addName(dungBeetles, "Dung Beetle");
 		
@@ -142,5 +151,6 @@ public class ModItems {
 		InsectRegistry.getInstance().registerInsect(greenWorm, true);
 		InsectRegistry.getInstance().registerInsect(dungBeetles, true);
 		InsectRegistry.getInstance().registerInsect(redWorm, true);
+		InsectRegistry.getInstance().registerInsect(pinkWorm, true);
 	}
 }

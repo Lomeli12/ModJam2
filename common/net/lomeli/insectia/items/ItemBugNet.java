@@ -5,8 +5,8 @@ import java.util.Random;
 import net.lomeli.insectia.Insectia;
 import net.lomeli.insectia.lib.ModStrings;
 import net.lomeli.insectia.api.EnumNetType;
-import net.lomeli.insectia.api.IBugs;
-import net.lomeli.insectia.api.INet;
+import net.lomeli.insectia.api.IInsect;
+import net.lomeli.insectia.api.IBugNet;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -18,7 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;
 
-public class ItemBugNet extends ItemTool implements INet{
+public class ItemBugNet extends ItemTool implements IBugNet{
 	
 	private Random rand = new Random();
 	private String itemTexture;
@@ -45,8 +45,8 @@ public class ItemBugNet extends ItemTool implements INet{
 			if(blockID == destroyable.blockID){
 				int k = rand.nextInt(300);
 				for(Item drops : getNetType().getDrops()){
-					if(drops instanceof IBugs){
-						if(k < ((IBugs)drops).getDropChance()){
+					if(drops instanceof IInsect){
+						if(k < ((IInsect)drops).getDropChance()){
 							EntityItem item = new EntityItem(world, x, y, z, new ItemStack(drops, 1));
 							world.spawnEntityInWorld(item);
 						}

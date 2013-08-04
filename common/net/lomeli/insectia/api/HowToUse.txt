@@ -1,0 +1,49 @@
+Insectia API
+============
+
+This is the beta API for Insectia, use
+mostly for creating new Bugs and Insect Housing,
+though it allows you to access the mod's
+items as well.
+
+--General--
+
+When creating a addon for Insectia,
+remember to take into account players
+without Insectia installed. You can check by
+adding Insectia as a dependancy.
+
+@Mod(modid = "dummymodid", name = "DummyMod, 
+    version = "1.0", dependencies="required-after:Insectia")
+    
+Or, you can have your custom content simply not 
+load if Insectia isn't installed.
+
+if (Loader.isModLoaded("insectia")){
+     try{
+          //Load Custom stuff
+     }catch(Exception ex){
+          //throw error
+     }
+}else{
+     //throw error
+}
+
+--Creating a new bug--
+
+Creating a bug is fairly simple,
+simply create an net.minecraft.item.Item class
+that implements IInsect
+
+Remember to register your bugs in the
+InsectRegistry so that it'll work with
+"vanilla" mod items
+
+InsectRegistry.getInstance().registerInsect(myInsect, true);
+
+--Creating new Insect housing--
+
+Simply implement ILivingQuarters in the tileEntity
+of your new Insect housing. ISidedInventory/IInventory
+is also recommended
+

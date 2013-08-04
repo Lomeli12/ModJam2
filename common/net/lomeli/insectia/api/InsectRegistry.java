@@ -27,7 +27,7 @@ public class InsectRegistry {
 	}
 	
 	public void registerInsect(ItemStack insect, boolean bool){
-		if(insect.getItem() instanceof IBugs){
+		if(insect.getItem() instanceof IInsect){
 			if(bool)
 				trappedRegistry.add(insect);
 			

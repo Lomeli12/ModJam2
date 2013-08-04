@@ -5,6 +5,6 @@ package net.lomeli.insectia.api;
  * @author Anthony
  *
  */
-public interface INet {
+public interface IBugNet {
 	public EnumNetType getNetType();
 }

@@ -3,13 +3,13 @@ package net.lomeli.insectia.items;
 import java.util.Random;
 
 import net.lomeli.insectia.api.EnumInsectQuartersType;
-import net.lomeli.insectia.api.IBugs;
+import net.lomeli.insectia.api.IInsect;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemBugs extends ItemGeneric implements IBugs{
+public class ItemBugs extends ItemGeneric implements IInsect{
 
 	private ItemStack[] itemsProduced;
 	private int dropChance;
@@ -25,6 +25,7 @@ public class ItemBugs extends ItemGeneric implements IBugs{
 		this.quartersType = quartersType;
 		this.itemsProduced = producedItems;
 		this.setMaxDamage(lifeSpan);
+		this.setMaxStackSize(1);
 	}
 	
 	@Override

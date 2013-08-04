@@ -57,6 +57,7 @@ public class ConfigMod {
 		ItemIDs.dirtNetID = config.get("Tools", "dirtNet", 681).getInt(681);
 		ItemIDs.sandNetID = config.get("Tools", "sandNet", 682).getInt(682);
 		ItemIDs.leafNetID = config.get("Tools", "leafNet", 683).getInt(683);
+		ItemIDs.treatedStickID = config.get("Items", "stick", 684).getInt(684);
 		
 		config.save();
 	}

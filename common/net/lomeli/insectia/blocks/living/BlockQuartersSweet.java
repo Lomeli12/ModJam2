@@ -1,7 +1,7 @@
 package net.lomeli.insectia.blocks.living;
 
 import net.lomeli.insectia.Insectia;
-import net.lomeli.insectia.api.IBugs;
+import net.lomeli.insectia.api.IInsect;
 import net.lomeli.insectia.lib.ModStrings;
 import net.lomeli.insectia.tileentity.TileEntitySweet;
 
@@ -38,7 +38,7 @@ public class BlockQuartersSweet extends BlockContainer{
 			if(tileEntity != null){
 				if(!entityPlayer.isSneaking()){
 					if(entityPlayer.inventory.getCurrentItem() != null &&
-						(entityPlayer.inventory.getCurrentItem().getItem() instanceof IBugs) &&
+						(entityPlayer.inventory.getCurrentItem().getItem() instanceof IInsect) &&
 						tileEntity.isItemValidForSlot(0, entityPlayer.inventory.getCurrentItem()) &&
 						tileEntity.getStackInSlot(0) == null){
 						System.out.println("Helllo");
