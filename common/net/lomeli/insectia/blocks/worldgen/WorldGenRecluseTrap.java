@@ -23,28 +23,17 @@ public class WorldGenRecluseTrap extends WorldGenerator{
 	}
 	@Override
 	public boolean generate(World world, Random random, int i, int j, int k) {
-		Chunk currentChunk = world.getChunkFromBlockCoords(i, k);
-		if(currentChunk != null){
-			//currentChunk.
-		}
-		
-		/*for (int l = 0; l < 10; ++l)
-        {
+		for (int l = 0; l < 64; ++l){
             int i1 = i + random.nextInt(8) - random.nextInt(8);
             int j1 = j + random.nextInt(4) - random.nextInt(4);
             int k1 = k + random.nextInt(8) - random.nextInt(8);
 
-            if (world.isAirBlock(i1, j1, k1))
-            {
-                int l1 = 1 + random.nextInt(random.nextInt(3) + 1);
-
-                for (int i2 = 0; i2 < l1; ++i2)
-                {
-                    world.setBlock(i1, j1 + i2, k1, this.blockID, this.blockMeta, 2);
-                }
+            if (world.isAirBlock(i1, j1, k1) && (!world.provider.hasNoSky || j1 < 127) && 
+            		Block.blocksList[this.blockID].canBlockStay(world, i1, j1 - 1, k1) &&
+            		random.nextInt(100) < 2){
+            	world.setBlock(i1, j1-1, k1, this.blockID, this.blockMeta, 2);
             }
-        }*/
-
+        }
         return true;
 	}
 

@@ -35,6 +35,7 @@ public class ItemBWidow extends ItemBugs{
 				int roll = rand.nextInt(100);
 				if(roll < ModInts.chanceOfBite){
 					((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 1));
+					world.playSoundAtEntity(entity, "mob.spider.say", 0.15F, 1F);
 				}
 				updateTick = 0;
 			}
