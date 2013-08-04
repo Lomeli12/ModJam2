@@ -165,6 +165,11 @@ public class ModItems {
 		InsectiaItems.pinkWorm = new ItemStack(pinkWorm);
 		InsectiaItems.dungBeetles = new ItemStack(dungBeetles);
 		
+		InsectiaItems.webNet = new ItemStack(webNet);
+		InsectiaItems.sandNet = new ItemStack(sandNet);
+		InsectiaItems.leafNet = new ItemStack(leafNet);
+		InsectiaItems.dirtNet = new ItemStack(dirtNet);
+		
 		InsectRegistry.getInstance().registerInsect(bRecluseSpider, false);
 		InsectRegistry.getInstance().registerInsect(longLegSpider, false);
 		InsectRegistry.getInstance().registerInsect(bWidowSpider, false);

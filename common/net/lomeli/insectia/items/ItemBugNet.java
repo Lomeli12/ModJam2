@@ -40,7 +40,7 @@ public class ItemBugNet extends ItemTool implements IBugNet{
 	@Override
 	public boolean onBlockDestroyed(ItemStack itemStack, World world, 
 			int blockID, int x, int y, int z, EntityLivingBase enity){
-
+		if(!world.isRemote){
 			for(Block destroyable : getNetType().getBlocks()){
 				if(blockID == destroyable.blockID){
 					int k = rand.nextInt(300);
@@ -54,7 +54,7 @@ public class ItemBugNet extends ItemTool implements IBugNet{
 					}
 				}
 			}
-		
+		}
 		return true;
     }
 

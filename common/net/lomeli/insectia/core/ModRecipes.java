@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.block.Block;
 
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -41,14 +42,30 @@ public class ModRecipes {
 		GameRegistry.addRecipe(InsectiaItems.fertilizer, new Object[]{ " D ", "DBD", " D ", 'D', ModItems.dung, 
 			'B',new ItemStack(Item.dyePowder, 1, 15)});
 		
-		GameRegistry.addRecipe(InsectiaItems.webNet, new Object[]{ "STT", "STT", "S  ", 'S', Item.stick, 'T',Item.silk});
-		GameRegistry.addRecipe(InsectiaItems.webNet, new Object[]{ "TTS", "TTS", "  S", 'S', Item.stick, 'T',Item.silk});
+		GameRegistry.addRecipe(InsectiaItems.webNet, new Object[]{ "STT", "STT", "S  ", 'S',Item.stick, 'T',Item.silk});
+		GameRegistry.addRecipe(InsectiaItems.webNet, new Object[]{ "TTS", "TTS", "  S", 'S',Item.stick, 'T',Item.silk});
 		GameRegistry.addRecipe(InsectiaItems.sandNet, new Object[]{ "TTT", "TWT","TTT", 'T',ModItems.treatedStick, 'W',Block.cloth});
 		GameRegistry.addRecipe(InsectiaItems.dirtNet, new Object[]{ " II", " SI", 'S',ModItems.treatedStick,'I',Item.ingotIron});
-		GameRegistry.addRecipe(new ShapedOreRecipe(InsectiaItems.dirtNet, true, " II", "SI", 'I',"ingotTin", 'S',Item.stick));
+		if(!OreDictionary.getOres("ingotTin").isEmpty())
+			GameRegistry.addRecipe(new ShapedOreRecipe(InsectiaItems.dirtNet, true, " II", "SI", 'I',"ingotTin", 'S',Item.stick));
+		
+		GameRegistry.addRecipe(InsectiaItems.leafNet, new Object[]{" SW", " TS", "T  ", 'S',Item.silk, 'T',Item.stick, 'W',Block.cloth});
 	}
 	
 	public static void blockRecipes(){
+		GameRegistry.addRecipe(InsectiaBlocks.frameBlock, new Object[]{"TWT","WIW","TWT", 
+			'T',ModItems.treatedStick, 'W',Block.wood, 'I',Item.ingotIron});
+		if(!OreDictionary.getOres("ingotTin").isEmpty())
+			GameRegistry.addRecipe(new ShapedOreRecipe(InsectiaBlocks.frameBlock, true, "TWT","WIW","TWT", 
+				'T',ModItems.treatedStick, 'W',Block.wood, 'I',"ingotTin"));
 		
+		GameRegistry.addRecipe(InsectiaBlocks.livingQuartersDark, new Object[]{ "IWI", "WFW","IWI", 
+			'I',Item.dyePowder, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
+		GameRegistry.addRecipe(InsectiaBlocks.livingQuartersSweet, new Object[]{ "IWI", "WFW","IWI", 
+				'I',Item.sugar, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
+		GameRegistry.addRecipe(InsectiaBlocks.livingQuartersGreen, new Object[]{ "IWI", "WFW","IWI", 
+				'I',Block.sapling, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
+		GameRegistry.addRecipe(InsectiaBlocks.livingQuartersSmelly, new Object[]{ "IWI", "WFW","IWI", 
+				'I',Item.rottenFlesh, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
 	}
 }
