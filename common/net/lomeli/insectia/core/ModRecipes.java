@@ -2,8 +2,6 @@ package net.lomeli.insectia.core;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import net.lomeli.insectia.api.InsectiaItems;
-import net.lomeli.insectia.api.InsectiaBlocks;
 import net.lomeli.insectia.blocks.ModBlocks;
 import net.lomeli.insectia.items.ModItems;
 
@@ -22,7 +20,7 @@ public class ModRecipes {
 	}
 	
 	public static void itemRecipes(){
-		GameRegistry.addShapedRecipe(InsectiaItems.treatedStick, new Object[]{" S ", "SMS", " S ", 'S',Item.stick, 'M',Item.bucketMilk});
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.treatedStick), new Object[]{" S ", "SMS", " S ", 'S',Item.stick, 'M',Item.bucketMilk});
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.cookie), new Object[]{ ModItems.cookieCrumb, ModItems.cookieCrumb, 
 			ModItems.cookieCrumb, ModItems.cookieCrumb });
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.appleRed), new Object[]{ ModItems.appleBit, ModItems.appleBit,
@@ -39,33 +37,49 @@ public class ModRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.leaves), new Object[]{ ModItems.leaf, ModItems.leaf, ModItems.leaf, ModItems.leaf, 
 			ModItems.leaf, ModItems.leaf, ModItems.leaf, ModItems.leaf, ModItems.leaf });
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.silk), new Object[]{ ModItems.silk, ModItems.silk });
-		GameRegistry.addRecipe(InsectiaItems.fertilizer, new Object[]{ " D ", "DBD", " D ", 'D', ModItems.dung, 
+		GameRegistry.addRecipe(new ItemStack(ModItems.fertilizer), new Object[]{ " D ", "DBD", " D ", 'D', ModItems.dung, 
 			'B',new ItemStack(Item.dyePowder, 1, 15)});
 		
-		GameRegistry.addRecipe(InsectiaItems.webNet, new Object[]{ "STT", "STT", "S  ", 'S',Item.stick, 'T',Item.silk});
-		GameRegistry.addRecipe(InsectiaItems.webNet, new Object[]{ "TTS", "TTS", "  S", 'S',Item.stick, 'T',Item.silk});
-		GameRegistry.addRecipe(InsectiaItems.sandNet, new Object[]{ "TTT", "TWT","TTT", 'T',ModItems.treatedStick, 'W',Block.cloth});
-		GameRegistry.addRecipe(InsectiaItems.dirtNet, new Object[]{ " II", " SI", 'S',ModItems.treatedStick,'I',Item.ingotIron});
+		GameRegistry.addRecipe(new ItemStack(ModItems.webNet), new Object[]{ "STT", "STT", "S  ", 'S',Item.stick, 'T',Item.silk});
+		GameRegistry.addRecipe(new ItemStack(ModItems.webNet), new Object[]{ "TTS", "TTS", "  S", 'S',Item.stick, 'T',Item.silk});
+		GameRegistry.addRecipe(new ItemStack(ModItems.sandNet), new Object[]{ "TTT", "TWT","TTT", 'T',ModItems.treatedStick, 'W',Block.cloth});
+		GameRegistry.addRecipe(new ItemStack(ModItems.dirtNet), new Object[]{ " II", " SI", 'S',ModItems.treatedStick,'I',Item.ingotIron});
 		if(!OreDictionary.getOres("ingotTin").isEmpty())
-			GameRegistry.addRecipe(new ShapedOreRecipe(InsectiaItems.dirtNet, true, " II", "SI", 'I',"ingotTin", 'S',Item.stick));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.dirtNet), true, " II", "SI", 'I',"ingotTin", 'S',Item.stick));
 		
-		GameRegistry.addRecipe(InsectiaItems.leafNet, new Object[]{" SW", " TS", "T  ", 'S',Item.silk, 'T',Item.stick, 'W',Block.cloth});
+		GameRegistry.addRecipe(new ItemStack(ModItems.leafNet), new Object[]{" SW", " TS", "T  ", 'S',Item.silk, 'T',Item.stick, 'W',Block.cloth});
+		
+		
 	}
 	
 	public static void blockRecipes(){
-		GameRegistry.addRecipe(InsectiaBlocks.frameBlock, new Object[]{"TWT","WIW","TWT", 
-			'T',ModItems.treatedStick, 'W',Block.wood, 'I',Item.ingotIron});
-		if(!OreDictionary.getOres("ingotTin").isEmpty())
-			GameRegistry.addRecipe(new ShapedOreRecipe(InsectiaBlocks.frameBlock, true, "TWT","WIW","TWT", 
-				'T',ModItems.treatedStick, 'W',Block.wood, 'I',"ingotTin"));
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.frameBlock), new Object[]{ "TWT","WIW","TWT", 
+			'T',ModItems.treatedStick, 'W',Block.planks, 'I',Item.ingotIron} );
+		if(!OreDictionary.getOres("plankWood").isEmpty())
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.frameBlock), true, "TWT","WIW","TWT", 
+					'T',ModItems.treatedStick, 'W',"plankWood", 'I',Item.ingotIron));
 		
-		GameRegistry.addRecipe(InsectiaBlocks.livingQuartersDark, new Object[]{ "IWI", "WFW","IWI", 
+		if(!OreDictionary.getOres("ingotTin").isEmpty()){
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.frameBlock), true, "TWT","WIW","TWT", 
+				'T',ModItems.treatedStick, 'W',Block.planks, 'I',"ingotTin"));
+			if(!OreDictionary.getOres("plankWood").isEmpty())
+				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.frameBlock), true, "TWT","WIW","TWT", 
+						'T',ModItems.treatedStick, 'W',"plankWood", 'I',"ingotTin"));
+		}
+		
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.livingQuartersDark), new Object[]{ "IWI", "WFW","IWI", 
 			'I',Item.dyePowder, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
-		GameRegistry.addRecipe(InsectiaBlocks.livingQuartersSweet, new Object[]{ "IWI", "WFW","IWI", 
-				'I',Item.sugar, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
-		GameRegistry.addRecipe(InsectiaBlocks.livingQuartersGreen, new Object[]{ "IWI", "WFW","IWI", 
-				'I',Block.sapling, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
-		GameRegistry.addRecipe(InsectiaBlocks.livingQuartersSmelly, new Object[]{ "IWI", "WFW","IWI", 
-				'I',Item.rottenFlesh, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.livingQuartersSweet), new Object[]{ "IWI", "WFW","IWI", 
+			'I',Item.sugar, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.livingQuartersGreen), new Object[]{ "IWI", "WFW","IWI", 
+			'I',Block.sapling, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.livingQuartersSmelly), new Object[]{ "IWI", "WFW","IWI", 
+			'I',Item.rottenFlesh, 'W',Block.thinGlass, 'F',ModBlocks.frameBlock });
+		
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.statusBlock), new Object[]{ "SIS","IFI","SIS", 'I',Item.ingotIron, 'S',Block.stone, 
+			'F',ModBlocks.frameBlock});
+		if(!OreDictionary.getOres("ingotTin").isEmpty())
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.statusBlock), true, "SIS","IFI","SIS", 'I',"ingotTin", 
+				'S',Block.stone, 'F',ModBlocks.frameBlock));
 	}
 }
