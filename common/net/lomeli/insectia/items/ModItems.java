@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.lomeli.insectia.api.EnumNetType;
 import net.lomeli.insectia.api.EnumInsectQuartersType;
 import net.lomeli.insectia.api.InsectRegistry;
+import net.lomeli.insectia.api.InsectiaItems;
 import net.lomeli.insectia.api.EnumNetType.EnumNetTypeHelper;
 import net.lomeli.insectia.items.bugs.ItemBWidow;
 import net.lomeli.insectia.items.bugs.ItemFireAnts;
@@ -142,6 +143,27 @@ public class ModItems {
 		LanguageRegistry.addName(pinkWorm, "Pink Silk Worm");
 		
 		LanguageRegistry.addName(dungBeetles, "Dung Beetle");
+		
+		InsectiaItems.stickyString = new ItemStack(stickyString);
+		InsectiaItems.trappedBug = new ItemStack(trappedBug);
+		InsectiaItems.leaf = new ItemStack(leaf);
+		InsectiaItems.appleBit = new ItemStack(appleBit);
+		InsectiaItems.cookieCrumb = new ItemStack(cookieCrumb);
+		InsectiaItems.breadCrumb = new ItemStack(breadCrumb);
+		InsectiaItems.steakPiece = new ItemStack(steakPiece);
+		InsectiaItems.silk = new ItemStack(silk);
+		InsectiaItems.woolFluff = new ItemStack(woolFluff);
+		InsectiaItems.dung = new ItemStack(dung);
+		InsectiaItems.fertilizer = new ItemStack(fertilizer);
+		InsectiaItems.treatedStick = new ItemStack(treatedStick);
+		InsectiaItems.bRecluseSpider = new ItemStack(bRecluseSpider);
+		InsectiaItems.longLegSpider = new ItemStack(longLegSpider);
+		InsectiaItems.bWidowSpider = new ItemStack(bWidowSpider);
+		InsectiaItems.fireAnts = new ItemStack(fireAnts);
+		InsectiaItems.armyAnts = new ItemStack(armyAnts);
+		InsectiaItems.greenWorm = new ItemStack(greenWorm);
+		InsectiaItems.pinkWorm = new ItemStack(pinkWorm);
+		InsectiaItems.dungBeetles = new ItemStack(dungBeetles);
 		
 		InsectRegistry.getInstance().registerInsect(bRecluseSpider, false);
 		InsectRegistry.getInstance().registerInsect(longLegSpider, false);

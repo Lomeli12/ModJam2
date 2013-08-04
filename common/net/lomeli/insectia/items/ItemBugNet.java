@@ -41,19 +41,19 @@ public class ItemBugNet extends ItemTool implements IBugNet{
 	public boolean onBlockDestroyed(ItemStack itemStack, World world, 
 			int blockID, int x, int y, int z, EntityLivingBase enity){
 
-		for(Block destroyable : getNetType().getBlocks()){
-			if(blockID == destroyable.blockID){
-				int k = rand.nextInt(300);
-				for(Item drops : getNetType().getDrops()){
-					if(drops instanceof IInsect){
-						if(k < ((IInsect)drops).getDropChance()){
-							EntityItem item = new EntityItem(world, x, y, z, new ItemStack(drops, 1));
-							world.spawnEntityInWorld(item);
+			for(Block destroyable : getNetType().getBlocks()){
+				if(blockID == destroyable.blockID){
+					int k = rand.nextInt(300);
+					for(Item drops : getNetType().getDrops()){
+						if(drops instanceof IInsect){
+							if(k < ((IInsect)drops).getDropChance()){
+								EntityItem item = new EntityItem(world, x, y, z, new ItemStack(drops, 1));
+								world.spawnEntityInWorld(item);
+							}
 						}
 					}
 				}
 			}
-		}
 		
 		return true;
     }

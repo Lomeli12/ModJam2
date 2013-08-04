@@ -12,7 +12,8 @@ import net.minecraft.world.World;
 public class BlockStatusBlock extends BlockGeneric{
 
 	public BlockStatusBlock(int par1, String texture) {
-		super(par1, Material.cloth, texture);
+		super(par1, Material.tnt, texture);
+		this.setBlockBounds(0F, 0F, 0F, 1F, 0.0625F, 1F);
 	}
 	
 	private int tick;
@@ -64,4 +65,8 @@ public class BlockStatusBlock extends BlockGeneric{
 		return true;
 	}
 
+	@Override
+	public boolean isOpaqueCube(){
+        return false;
+    }
 }

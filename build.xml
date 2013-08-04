@@ -50,8 +50,11 @@
 		
 		<!-- Build the jar -->
 		<mkdir dir="${dir.development}\${dir.release}\${dir.modname}\${release.minecraft.version}\${release.mod.version}" />
-		<jar destfile="${dir.development}\${dir.release}\${dir.modname}\${release.minecraft.version}\${release.mod.version}\${release.mod.name}-universal-${release.mod.version}-build-${build_number.build_number}.jar">
-			<fileset dir="${dir.development}\forge\mcp\src\minecraft\" includes="mcmod.info" />
+		<jar destfile="${dir.development}\${dir.release}\${dir.modname}\${release.minecraft.version}\${release.mod.version}\${release.mod.name}-universal-${release.mod.version}${build_number.build_number}.jar">
+			<fileset dir="${dir.development}\forge\mcp\src\minecraft\" >
+                <include name="mcmod.info" />
+                <include name="pack.mcmeta" />
+            </fileset>
 			<fileset dir="${dir.development}\forge\mcp\reobf\minecraft" />
 			<fileset dir="${dir.development}\ModJam2\resources" excludes="**/xcf/**" />
 		</jar>

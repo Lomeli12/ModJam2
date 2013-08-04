@@ -11,6 +11,7 @@ import net.lomeli.insectia.blocks.ModBlocks;
 import net.lomeli.insectia.core.CommonProxy;
 import net.lomeli.insectia.core.ConfigMod;
 import net.lomeli.insectia.core.CreativeTabMod;
+import net.lomeli.insectia.core.ModRecipes;
 import net.lomeli.insectia.items.ModItems;
 import net.lomeli.insectia.lib.ModStrings;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,6 +37,8 @@ public class Insectia {
 		
 		ModBlocks.loadBlocks();
 		ModItems.loadItems();
+		
+		ModRecipes.loadRecipes();
 		
 		proxy.registerTileEntities();
 	}

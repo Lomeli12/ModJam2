@@ -3,6 +3,7 @@ package net.lomeli.insectia.blocks;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
+import net.lomeli.insectia.api.InsectiaBlocks;
 import net.lomeli.insectia.blocks.living.BlockQuartersDark;
 import net.lomeli.insectia.blocks.living.BlockQuartersGreen;
 import net.lomeli.insectia.blocks.living.BlockQuartersSmelly;
@@ -32,7 +33,7 @@ public class ModBlocks {
 	}
 	
 	public static void registerBlocks(){
-		String livingName = "Insect Living Quarters: ";
+		String livingName = "Insect Housing: ";
 		
 		GameRegistry.registerBlock(livingQuartersDark, livingName + "Dark");
 		GameRegistry.registerBlock(livingQuartersGreen, livingName + "Green");
@@ -49,6 +50,13 @@ public class ModBlocks {
 		
 		LanguageRegistry.addName(frameBlock, "Frame Block");
 		LanguageRegistry.addName(statusBlock, "Status Block");
+		
+		InsectiaBlocks.frameBlock = new ItemStack(frameBlock);
+		InsectiaBlocks.livingQuartersDark = new ItemStack(livingQuartersDark);
+		InsectiaBlocks.livingQuartersGreen = new ItemStack(livingQuartersGreen);
+		InsectiaBlocks.livingQuartersSmelly = new ItemStack(livingQuartersSmelly);
+		InsectiaBlocks.livingQuartersSweet = new ItemStack(livingQuartersSweet);
+		InsectiaBlocks.statusBlock = new ItemStack(statusBlock);
 	}
 
 }
