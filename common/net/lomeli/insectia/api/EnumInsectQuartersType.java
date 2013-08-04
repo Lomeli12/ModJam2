@@ -1,5 +1,8 @@
 package net.lomeli.insectia.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraftforge.common.EnumHelper;
 
 public enum EnumInsectQuartersType {
@@ -11,6 +14,7 @@ public enum EnumInsectQuartersType {
 	private final int id;
 	private EnumInsectQuartersType(int id){
 		this.id = id;
+		EnumInsectQuartersHelper.quarterTypeList.add(id, this);
 	}
 	
 	public int getID(){
@@ -18,6 +22,15 @@ public enum EnumInsectQuartersType {
 	}
 	
 	public static class EnumInsectQuartersHelper{
+		public static List<EnumInsectQuartersType> quarterTypeList = new ArrayList<EnumInsectQuartersType>();
+		
+		public static int getNextID(){
+			return quarterTypeList.size();
+		}
+		
+		public static EnumInsectQuartersType getTypeByID(int id){
+			return quarterTypeList.get(id);
+		}
 		/**
 		 * Use this to create your custom living quarters type
 		 * @param name Name for your custom type. Do not use the names <i>DARK, SWEET, GREEN, SMELLY</i>

@@ -1,68 +1,41 @@
-package net.lomeli.insectia.blocks;
-
-import java.util.List;
-import java.util.Random;
+package net.lomeli.insectia.blocks.living;
 
 import net.lomeli.insectia.Insectia;
-import net.lomeli.insectia.api.EnumInsectQuartersType;
 import net.lomeli.insectia.api.IBugs;
 import net.lomeli.insectia.lib.ModStrings;
-import net.lomeli.insectia.tileentity.TileEntityLivingQuarters;
+import net.lomeli.insectia.tileentity.TileEntitySmelly;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
-public class BlockLivingQuarters extends BlockContainer{
+public class BlockQuartersSmelly extends BlockContainer{
 
 	private Icon[] iconArray;
-	public BlockLivingQuarters(int par1) {
+	public BlockQuartersSmelly(int par1) {
 		super(par1, Material.wood);
 		this.setCreativeTab(Insectia.modTab);
 	}
-	
-	public EnumInsectQuartersType getTypeBasedOnMetadata(int meta){
-		EnumInsectQuartersType type;
-		switch(meta){
-			case 0:
-				type = EnumInsectQuartersType.DARK;
-				break;
-			case 1:
-				type = EnumInsectQuartersType.SWEET;
-				break;
-			case 2:
-				type = EnumInsectQuartersType.GREEN;
-				break;
-			case 3:
-				type = EnumInsectQuartersType.SMELLY;
-				break;
-			default:
-				type = EnumInsectQuartersType.DARK;
-				break;
-		}
-		
-		return type;
+
+	@Override
+	public TileEntity createNewTileEntity(World world) {
+		return new TileEntitySmelly();
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, 
 		EntityPlayer entityPlayer, int i, float j, float k, float f){
 		if(entityPlayer != null){
-			TileEntityLivingQuarters tileEntity = (TileEntityLivingQuarters)world.getBlockTileEntity(x, y, z);
+			TileEntitySmelly tileEntity = (TileEntitySmelly)world.getBlockTileEntity(x, y, z);
 			if(tileEntity != null){
-				int t = world.getBlockMetadata(x, y, z);
-				if(tileEntity.getQuartersType() == null)
-					tileEntity.setQuartersType(getTypeBasedOnMetadata(t));
 				if(!entityPlayer.isSneaking()){
 					if(entityPlayer.inventory.getCurrentItem() != null &&
 						(entityPlayer.inventory.getCurrentItem().getItem() instanceof IBugs) &&
@@ -84,8 +57,19 @@ public class BlockLivingQuarters extends BlockContainer{
 				}
 			}
 		}
-		
 		return true;
+	}
+	@Override
+	public void registerIcons(IconRegister iconRegister){
+		this.iconArray = new Icon[2];
+		
+		this.iconArray[0] = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":livingQuarters_3");
+		this.iconArray[1] = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":base");	
+	}
+	
+	@Override
+	public Icon getIcon(int par1, int par2){
+		return par1 < 2 ? this.iconArray[1] : this.iconArray[0];
     }
 	
 	@Override
@@ -134,37 +118,13 @@ public class BlockLivingQuarters extends BlockContainer{
 			}
 		}
 	}
-
 	@Override
-	public TileEntity createNewTileEntity(World world) {
-		return new TileEntityLivingQuarters();
-	}
-	
-	@Override
-	public void registerIcons(IconRegister iconRegister){
-		this.iconArray = new Icon[4];
-		for(int i = 0; i < this.iconArray.length; i++){
-			this.iconArray[i] = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":" +
-					"livingQuarters_" + i);
-		}
-	}
-	
-	public Icon getBlockIcon(int par1){
-		return this.iconArray[par1];
-	}
-	
-	@Override
-	public Icon getIcon(int par1, int par2)
-    {
-		return this.iconArray[par2 % this.iconArray.length];
+	public int getRenderBlockPass(){
+        return 0;
     }
 	
 	@Override
-	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-		for(int i = 0; i < this.iconArray.length; i++){
-			par3List.add(new ItemStack(par1, 1, i));
-		}
-        
+	public boolean isOpaqueCube(){
+        return false;
     }
 }

@@ -2,21 +2,27 @@ package net.lomeli.insectia.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.lomeli.insectia.blocks.item.ItemLivingQuarters;
+
+import net.lomeli.insectia.blocks.living.BlockQuartersDark;
+import net.lomeli.insectia.blocks.living.BlockQuartersGreen;
+import net.lomeli.insectia.blocks.living.BlockQuartersSmelly;
+import net.lomeli.insectia.blocks.living.BlockQuartersSweet;
 import net.lomeli.insectia.lib.BlockIDs;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 
 public class ModBlocks {
 	
-	public static Block livingQuartersBlock, frameBlock, statusBlock;
-	public static ItemStack darkQuarters, sweetQuarters, smellyQuarters, greenQuarters;
-	public static String[] quarterNames = {"Dark", "Sweet", "Green", "Selly"};
+	public static Block livingQuartersDark, livingQuartersSweet, livingQuartersGreen,
+		livingQuartersSmelly, frameBlock, statusBlock;
 	
 	public static void loadBlocks(){
-		livingQuartersBlock = new BlockLivingQuarters(BlockIDs.livingQuartersID)
-			.setUnlocalizedName("insectlivingquarters");
+		livingQuartersDark = new BlockQuartersDark(BlockIDs.livingDarkID).setUnlocalizedName("livingQuartersDark");
+		livingQuartersGreen = new BlockQuartersGreen(BlockIDs.livingGreenID).setUnlocalizedName("livingQuartersGreen");
+		livingQuartersSmelly = new BlockQuartersSmelly(BlockIDs.livingSmellyID).setUnlocalizedName("livingQuartersSmelly");
+		livingQuartersSweet = new BlockQuartersSweet(BlockIDs.livingSweetID).setUnlocalizedName("livingQuartersSweet");
 		frameBlock = new BlockFrameBlock(BlockIDs.frameBlockID, Material.wood, "frameblock")
 			.setUnlocalizedName("frameblock");
 		statusBlock = new BlockStatusBlock(BlockIDs.statusBlockID, "statusblock")
@@ -26,15 +32,17 @@ public class ModBlocks {
 	}
 	
 	public static void registerBlocks(){
-		GameRegistry.registerBlock(livingQuartersBlock, ItemLivingQuarters.class, "InsectLivingQuarters");
-		for(int i = 0; i < quarterNames.length; i++){
-			LanguageRegistry.addName(new ItemStack(livingQuartersBlock, 1, i), 
-				"Insect Living Quarters: " + quarterNames[i]);
-		}
-		darkQuarters = new ItemStack(livingQuartersBlock, 1, 0);
-		sweetQuarters = new ItemStack(livingQuartersBlock, 1, 1);
-		greenQuarters = new ItemStack(livingQuartersBlock, 1, 2);
-		smellyQuarters = new ItemStack(livingQuartersBlock, 1, 3);
+		String livingName = "Insect Living Quarters: ";
+		
+		GameRegistry.registerBlock(livingQuartersDark, livingName + "Dark");
+		GameRegistry.registerBlock(livingQuartersGreen, livingName + "Green");
+		GameRegistry.registerBlock(livingQuartersSmelly, livingName + "Smelly");
+		GameRegistry.registerBlock(livingQuartersSweet, livingName + "Sweet");
+		
+		LanguageRegistry.addName(livingQuartersDark, livingName + "Dark"); 
+		LanguageRegistry.addName(livingQuartersGreen, livingName + "Green"); 
+		LanguageRegistry.addName(livingQuartersSmelly, livingName + "Smelly"); 
+		LanguageRegistry.addName(livingQuartersSweet, livingName + "Sweet"); 
 		
 		GameRegistry.registerBlock(frameBlock, "Frame Block");
 		GameRegistry.registerBlock(statusBlock, "Status Block");

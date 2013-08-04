@@ -3,10 +3,9 @@ package net.lomeli.insectia.tileentity;
 import java.util.Random;
 
 import net.lomeli.insectia.api.EnumInsectQuartersType;
-import net.lomeli.insectia.api.EnumInsectQuartersType.EnumInsectQuartersHelper;
-import net.lomeli.insectia.api.ILivingQuarters;
 import net.lomeli.insectia.api.IBugs;
-import net.lomeli.insectia.lib.ModInts;
+import net.lomeli.insectia.api.ILivingQuarters;
+import net.lomeli.insectia.api.EnumInsectQuartersType.EnumInsectQuartersHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -18,12 +17,16 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
-@Deprecated
-public class TileEntityLivingQuarters extends TileEntity 
+public class TileEntitySweet extends TileEntity
 	implements IInventory, ILivingQuarters{
 	
-	protected ItemStack[] inventory = new ItemStack[4];
-	private EnumInsectQuartersType quartersType;
+	private ItemStack[] inventory;
+	private EnumInsectQuartersType type;
+	
+	public TileEntitySweet(){
+		this.inventory = new ItemStack[4];
+		this.type = EnumInsectQuartersType.SWEET;
+	}
 	
 	private int tick;
 	
@@ -73,7 +76,7 @@ public class TileEntityLivingQuarters extends TileEntity
 				this.inventory[i+1] = randItem.copy();
 		}
 		int damage = num;
-		if(this.quartersType.equals(item.getPreferedLivingType()))
+		if(this.type.equals(item.getPreferedLivingType()))
 			damage--;
 		
 		item.hurtBug(this.inventory[0], damage);
@@ -122,15 +125,15 @@ public class TileEntityLivingQuarters extends TileEntity
 		NBTTagCompound nbtTag = packet.customParam1;
 		this.loadNBT(nbtTag);
 	}
-	
-	@Override
-	public void setQuartersType(EnumInsectQuartersType type) {
-		this.quartersType = type;
-	}
 
 	@Override
 	public EnumInsectQuartersType getQuartersType() {
-		return this.quartersType;
+		return this.type;
+	}
+
+	@Override
+	public void setQuartersType(EnumInsectQuartersType type) {
+		this.type = type;
 	}
 
 	@Override

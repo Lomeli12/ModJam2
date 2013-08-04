@@ -66,9 +66,12 @@ public class ConfigMod {
 		
 		config.load();
 		
-		BlockIDs.livingQuartersID = config.get("Blocks", "insectLivingQuarters", 630).getInt(630);
-		BlockIDs.frameBlockID = config.get("Blocks", "frameBlock", 631).getInt(631);
-		BlockIDs.statusBlockID = config.get("Blocks", "statusBlock", 632).getInt(632);
+		BlockIDs.livingDarkID = config.get("Blocks", "livingQuartersDark", 630).getInt(630);
+		BlockIDs.livingSweetID = config.get("Blocks", "livingQuartersSweet", 631).getInt(631);
+		BlockIDs.livingGreenID = config.get("Blocks", "livingQuartersGreen", 632).getInt(632);
+		BlockIDs.livingSmellyID = config.get("Blocks", "livingQuartersSmelly", 633).getInt(633);
+		BlockIDs.frameBlockID = config.get("Blocks", "frameBlock", 634).getInt(634);
+		BlockIDs.statusBlockID = config.get("Blocks", "statusBlock", 635).getInt(635);
 		
 		config.save();
 	}
