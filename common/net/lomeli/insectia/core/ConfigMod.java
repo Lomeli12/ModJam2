@@ -73,6 +73,7 @@ public class ConfigMod {
 		BlockIDs.livingSmellyID = config.get("Blocks", "livingQuartersSmelly", 633).getInt(633);
 		BlockIDs.frameBlockID = config.get("Blocks", "frameBlock", 634).getInt(634);
 		BlockIDs.statusBlockID = config.get("Blocks", "statusBlock", 635).getInt(635);
+		BlockIDs.recluseTrapID = config.get("Blocks", "recluseTrap", 636).getInt(636);
 		
 		config.save();
 	}

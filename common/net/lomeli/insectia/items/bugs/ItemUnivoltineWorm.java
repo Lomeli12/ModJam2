@@ -12,13 +12,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
-public class ItemPinkWorm extends ItemBugs{
+public class ItemUnivoltineWorm extends ItemBugs{
 
-	public ItemPinkWorm(int par1, String texture, ItemStack[] producedItems,
+	public ItemUnivoltineWorm(int par1, String texture, ItemStack[] producedItems,
 			int dropChance, int time, EnumInsectQuartersType quartersType,
-			int lifeSpan) {
-		super(par1, texture, producedItems, dropChance, time, quartersType, lifeSpan);
+			int lifeSpan, BiomeGenBase[] biomes) {
+		super(par1, texture, producedItems, dropChance, time, quartersType, lifeSpan, biomes);
 	}
 	
 	private int updateTick;

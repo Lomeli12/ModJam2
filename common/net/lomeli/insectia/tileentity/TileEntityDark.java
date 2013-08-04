@@ -6,6 +6,7 @@ import net.lomeli.insectia.api.EnumInsectQuartersType;
 import net.lomeli.insectia.api.IInsect;
 import net.lomeli.insectia.api.ILivingQuarters;
 import net.lomeli.insectia.api.EnumInsectQuartersType.EnumInsectQuartersHelper;
+import net.lomeli.insectia.blocks.ModBlocks;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -85,6 +86,13 @@ public class TileEntityDark extends TileEntity
 	public void updateEntity(){
 		super.updateEntity();
 		if(!this.worldObj.isRemote){
+			if(this.worldObj.getBlockId(xCoord, yCoord + 1, zCoord) == ModBlocks.statusBlock.blockID){
+				int l = 0;
+				if(this.inventory[0] != null)
+					l = this.getInsectLifePercentage() + 1;
+				this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, l , 2);
+				this.worldObj.markBlockForUpdate(xCoord, yCoord + 1, zCoord);
+			}
 			if(this.inventory[0] != null && (this.inventory[0].getItem() instanceof IInsect)){
 				tick++;
 				if(tick >= ((IInsect)this.inventory[0].getItem()).getProductionTime()){
@@ -94,8 +102,11 @@ public class TileEntityDark extends TileEntity
 					if(this.getQuartersType().equals(((IInsect)this.inventory[0].getItem()).getPreferedLivingType()) && rand.nextInt(100) < 50){}
 					else
 						((IInsect)this.inventory[0].getItem()).hurtBug(this.inventory[0], 1);
-					
-					tick = 0;
+					if(this.worldObj.getBlockId(xCoord, yCoord + 1, zCoord) == ModBlocks.statusBlock.blockID){
+						this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, this.getInsectLifePercentage() + 1, 2);
+						this.worldObj.markBlockForUpdate(xCoord, yCoord + 1, zCoord);
+					}
+					tick = 0;	
 				}
 				if(this.inventory[0].getItemDamage() >= this.inventory[0].getMaxDamage())
 					this.setInventorySlotContents(0, null);
@@ -193,5 +204,11 @@ public class TileEntityDark extends TileEntity
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public int getInsectLifePercentage() {
+		double percentage = this.inventory[0].getItemDamage() / (this.inventory[0].getMaxDamage() * 0.3);
+		return (int)percentage > 2 ? 2 : (int)percentage;
 	}
 }

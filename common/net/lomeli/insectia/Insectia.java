@@ -6,8 +6,10 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.lomeli.insectia.blocks.ModBlocks;
+import net.lomeli.insectia.blocks.worldgen.WorldGenerator;
 import net.lomeli.insectia.core.CommonProxy;
 import net.lomeli.insectia.core.ConfigMod;
 import net.lomeli.insectia.core.CreativeTabMod;
@@ -45,7 +47,7 @@ public class Insectia {
 	
 	@Mod.EventHandler
 	public static void Init(FMLInitializationEvent event){
-		
+		GameRegistry.registerWorldGenerator(new WorldGenerator());
 	}
 	
 	@Mod.EventHandler

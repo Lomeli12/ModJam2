@@ -12,4 +12,5 @@ public class BlockIDs {
 	public static int livingSmellyID;
 	public static int frameBlockID;
 	public static int statusBlockID;
+	public static int recluseTrapID;
 }

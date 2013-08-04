@@ -11,14 +11,12 @@ public class CreativeTabMod extends CreativeTabs {
 	}
 	
 	@Override
-	public Item getTabIconItem()
-    {
+	public Item getTabIconItem(){
 		return ModItems.bWidowSpider;
     }
 	
 	@Override
-	public String getTranslatedTabLabel()
-    {
+	public String getTranslatedTabLabel(){
 		return this.getTabLabel();
     }
 

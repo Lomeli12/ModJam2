@@ -15,11 +15,12 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
-public class ItemRedWorms extends ItemBugs{
-	public ItemRedWorms(int par1, String texture, ItemStack[] producedItems, 
-			int dropChance, int time, EnumInsectQuartersType quartersType, int lifeSpan) {
-		super(par1, texture, producedItems, dropChance, time, quartersType, lifeSpan);
+public class ItemPolyvoltineWorms extends ItemBugs{
+	public ItemPolyvoltineWorms(int par1, String texture, ItemStack[] producedItems, 
+			int dropChance, int time, EnumInsectQuartersType quartersType, int lifeSpan, BiomeGenBase[] biomes) {
+		super(par1, texture, producedItems, dropChance, time, quartersType, lifeSpan, biomes);
 	}
 	
 	private int updateTick;

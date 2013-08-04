@@ -10,14 +10,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class ItemFireAnts extends ItemBugs{
 
 	private Random rand = new Random();
 	private int tick;
 	public ItemFireAnts(int par1, String texture, ItemStack[] producedItems, 
-		int chance, int time, EnumInsectQuartersType type, int lifeSpan) {
-		super(par1, texture, producedItems, chance, time, type, lifeSpan);
+		int chance, int time, EnumInsectQuartersType type, int lifeSpan,
+		BiomeGenBase[] biomes) {
+		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes);
 	}
 
 	@Override

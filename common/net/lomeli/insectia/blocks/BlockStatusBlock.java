@@ -1,19 +1,36 @@
 package net.lomeli.insectia.blocks;
 
 import net.lomeli.insectia.api.ILivingQuarters;
+import net.lomeli.insectia.lib.ModStrings;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 public class BlockStatusBlock extends BlockGeneric{
 
-	public BlockStatusBlock(int par1, String texture) {
-		super(par1, Material.tnt, texture);
+	private Icon[] iconArray;
+	public BlockStatusBlock(int par1) {
+		super(par1, Material.tnt, "");
 		this.setBlockBounds(0F, 0F, 0F, 1F, 0.0625F, 1F);
+	}
+	
+	@Override
+	public void registerIcons(IconRegister iconRegister){
+		this.iconArray = new Icon[4];
+		for(int i = 0; i < this.iconArray.length; i++){
+			this.iconArray[i] = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":statusblock_" + i);
+		}
+	}
+	
+	@Override
+	public Icon getIcon(int par1, int par2){
+		return par1 != 1 ? this.iconArray[0] : this.iconArray[par2];
 	}
 	
 	private int tick;
@@ -30,7 +47,6 @@ public class BlockStatusBlock extends BlockGeneric{
 							int life = ((IInventory)tile).getStackInSlot(0).getMaxDamage() - ((IInventory)tile).getStackInSlot(0).getItemDamage();
 							entityPlayer.addChatMessage("Bug: " + ((IInventory)tile).getStackInSlot(0).getDisplayName());
 							entityPlayer.addChatMessage("Health: " + life + "/" +((IInventory)tile).getStackInSlot(0).getMaxDamage());
-					
 						}else{
 							entityPlayer.addChatMessage("Empty...");
 							if(((ILivingQuarters)tile).getQuartersType() != null)
@@ -46,7 +62,6 @@ public class BlockStatusBlock extends BlockGeneric{
 							int life = ((ISidedInventory)tile).getStackInSlot(0).getMaxDamage() - ((ISidedInventory)tile).getStackInSlot(0).getItemDamage();
 							entityPlayer.addChatMessage("Bug: " + ((ISidedInventory)tile).getStackInSlot(0).getDisplayName());
 							entityPlayer.addChatMessage("Health: " + life + "/" +((ISidedInventory)tile).getStackInSlot(0).getMaxDamage());
-					
 						}else{
 							entityPlayer.addChatMessage("Empty...");
 							if(((ILivingQuarters)tile).getQuartersType() != null)

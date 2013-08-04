@@ -8,6 +8,7 @@ import net.lomeli.insectia.api.IInsect;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class ItemBugs extends ItemGeneric implements IInsect{
 
@@ -16,14 +17,17 @@ public class ItemBugs extends ItemGeneric implements IInsect{
 	private int time;
 	private EnumInsectQuartersType  quartersType;
 	private Random randomItem = new Random();
+	private BiomeGenBase[] biomes;
 	
 	public ItemBugs(int par1, String texture, ItemStack[] producedItems, 
-		int dropChance, int time, EnumInsectQuartersType quartersType, int lifeSpan) {
+		int dropChance, int time, EnumInsectQuartersType quartersType, 
+		int lifeSpan, BiomeGenBase[] biomes) {
 		super(par1, texture);
 		this.dropChance = dropChance;
 		this.time = time;
 		this.quartersType = quartersType;
 		this.itemsProduced = producedItems;
+		this.biomes = biomes;
 		this.setMaxDamage(lifeSpan);
 		this.setMaxStackSize(1);
 	}
@@ -65,6 +69,11 @@ public class ItemBugs extends ItemGeneric implements IInsect{
 	public ItemStack getRandomItem() {
 		int i = randomItem.nextInt(this.itemsProduced.length);
 		return this.itemsProduced[i];
+	}
+
+	@Override
+	public BiomeGenBase[] getPreferedBiome() {
+		return this.biomes;
 	}
 
 }

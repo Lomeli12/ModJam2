@@ -9,12 +9,13 @@ import net.lomeli.insectia.api.InsectiaItems;
 import net.lomeli.insectia.api.EnumNetType.EnumNetTypeHelper;
 import net.lomeli.insectia.items.bugs.ItemBWidow;
 import net.lomeli.insectia.items.bugs.ItemFireAnts;
-import net.lomeli.insectia.items.bugs.ItemPinkWorm;
-import net.lomeli.insectia.items.bugs.ItemRedWorms;
+import net.lomeli.insectia.items.bugs.ItemUnivoltineWorm;
+import net.lomeli.insectia.items.bugs.ItemPolyvoltineWorms;
 import net.lomeli.insectia.lib.ItemIDs;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class ModItems {
 
@@ -35,18 +36,30 @@ public class ModItems {
 	//Spiders
 	public static Item stickyString, trappedBug;
 	public static ItemStack[] spiderProduction;
+	public static BiomeGenBase[] spiderBiomes = { BiomeGenBase.extremeHillsEdge, BiomeGenBase.jungle, 
+		BiomeGenBase.jungleHills, BiomeGenBase.plains, BiomeGenBase.swampland, BiomeGenBase.forest,
+		BiomeGenBase.forestHills, BiomeGenBase.extremeHills, BiomeGenBase.desert };
 	
 	//Ants
 	public static Item leaf, appleBit, cookieCrumb, breadCrumb, steakPiece;
 	public static ItemStack[] antProduction;
+	public static BiomeGenBase[] antBiomes = {BiomeGenBase.beach, BiomeGenBase.desert, BiomeGenBase.extremeHills,
+		BiomeGenBase.extremeHillsEdge, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.jungle,
+		BiomeGenBase.jungleHills, BiomeGenBase.mushroomIsland, BiomeGenBase.mushroomIslandShore, 
+		BiomeGenBase.plains, BiomeGenBase.swampland};
 	
 	//Silk Worms
 	public static Item silk, woolFluff;
 	public static ItemStack[] silkProduction;
+	public static BiomeGenBase[] silkWormBiomes = { BiomeGenBase.forest, BiomeGenBase.forestHills,
+		BiomeGenBase.jungle, BiomeGenBase.jungleHills };
 	
 	//Dung Beetles
 	public static Item dung, fertilizer;
 	public static ItemStack[] beetleProduction;
+	public static BiomeGenBase[] dungBiomes = {BiomeGenBase.extremeHills,
+		BiomeGenBase.extremeHillsEdge, BiomeGenBase.forest, BiomeGenBase.forestHills, BiomeGenBase.jungle,
+		BiomeGenBase.jungleHills, BiomeGenBase.swampland};
 	
 	/* Tools */
 	public static Item webNet, dirtNet, sandNet, leafNet;
@@ -70,37 +83,37 @@ public class ModItems {
 		treatedStick = new ItemGeneric(ItemIDs.treatedStickID, "treatedStick").setUnlocalizedName("treatedStick");
 		
 		spiderProduction = new ItemStack[]{ new ItemStack(stickyString), 
-				new ItemStack(trappedBug) };
-		antProduction = new ItemStack[]{new ItemStack(leaf), new ItemStack(appleBit), 
-				new ItemStack(cookieCrumb), new ItemStack(breadCrumb), new ItemStack(steakPiece)};
-		silkProduction = new ItemStack[]{new ItemStack(silk), new ItemStack(woolFluff)};
-		beetleProduction = new ItemStack[]{new ItemStack(dung), new ItemStack(fertilizer)};
+				new ItemStack(trappedBug), new ItemStack(silk) };
+		antProduction = new ItemStack[]{ new ItemStack(leaf), new ItemStack(appleBit), 
+				new ItemStack(cookieCrumb), new ItemStack(breadCrumb), new ItemStack(steakPiece) };
+		silkProduction = new ItemStack[]{ new ItemStack(silk), new ItemStack(woolFluff) };
+		beetleProduction = new ItemStack[]{ new ItemStack(dung) };
 		
 		//Spiders
 		bRecluseSpider = new ItemBugs(ItemIDs.bRecluseSpiderID, "bugs/bRecluseSpider", 
-			spiderProduction, 5, 150, EnumInsectQuartersType.DARK, 3).setUnlocalizedName("bRecluseSpider");
+			spiderProduction, 13, 150, EnumInsectQuartersType.DARK, 3, spiderBiomes).setUnlocalizedName("bRecluseSpider");
 		longLegSpider = new ItemBugs(ItemIDs.longLegSpiderID, "bugs/longLegSpider", 
-			spiderProduction, 5, 130, EnumInsectQuartersType.DARK, 4).setUnlocalizedName("longLegSpider");
+			spiderProduction, 10, 130, EnumInsectQuartersType.DARK, 4, spiderBiomes).setUnlocalizedName("longLegSpider");
 		bWidowSpider = new ItemBWidow(ItemIDs.bWidowSpiderID, "bugs/bWidowSpider", 
-			spiderProduction, 5, 175, EnumInsectQuartersType.DARK, 3).setUnlocalizedName("bWidownSpider");
+			spiderProduction, 15, 175, EnumInsectQuartersType.DARK, 3, spiderBiomes).setUnlocalizedName("bWidownSpider");
 		
 		//Ants
 		fireAnts = new ItemFireAnts(ItemIDs.fireAntsID, "bugs/fireAnts", 
-			antProduction, 60, 90, EnumInsectQuartersType.SWEET, 7).setUnlocalizedName("fireAnts");
+			antProduction, 50, 90, EnumInsectQuartersType.SWEET, 7, antBiomes).setUnlocalizedName("fireAnts");
 		armyAnts = new ItemBugs(ItemIDs.armyAntsID, "bugs/armyAnts", 
-			antProduction, 20, 75, EnumInsectQuartersType.SWEET, 10).setUnlocalizedName("armyAnts");
+			antProduction, 20, 75, EnumInsectQuartersType.SWEET, 10, antBiomes).setUnlocalizedName("armyAnts");
 		
 		//Silk Worms
 		bivoltineWorm = new ItemBugs(ItemIDs.bivoltineWormID, "bugs/bivoltineWorm", 
-			silkProduction, 25, 125, EnumInsectQuartersType.GREEN, 10).setUnlocalizedName("greenSilkWorm");
-		polyvoltineWorm = new ItemRedWorms(ItemIDs.polyvoltineWormID, "bugs/polyvoltineWorm", silkProduction, 40, 60,
-			EnumInsectQuartersType.GREEN, 10).setUnlocalizedName("redSilkWorm");
-		univoltineWorm = new ItemPinkWorm(ItemIDs.univoltineWormID, "bugs/univoltineWorm",
-			silkProduction, 25, 50, EnumInsectQuartersType.GREEN, 4).setUnlocalizedName("pinkSilkWorm");
+			silkProduction, 20, 125, EnumInsectQuartersType.GREEN, 10, silkWormBiomes).setUnlocalizedName("greenSilkWorm");
+		polyvoltineWorm = new ItemPolyvoltineWorms(ItemIDs.polyvoltineWormID, "bugs/polyvoltineWorm", silkProduction,
+			40, 60, EnumInsectQuartersType.GREEN, 10, silkWormBiomes).setUnlocalizedName("redSilkWorm");
+		univoltineWorm = new ItemUnivoltineWorm(ItemIDs.univoltineWormID, "bugs/univoltineWorm",
+			silkProduction, 5, 50, EnumInsectQuartersType.GREEN, 4, silkWormBiomes).setUnlocalizedName("pinkSilkWorm");
 		
 		//Dung Beetle
 		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", 
-			beetleProduction, 40, 60, EnumInsectQuartersType.SMELLY, 15).setUnlocalizedName("dungBeetle");
+			beetleProduction, 25, 60, EnumInsectQuartersType.SMELLY, 15, dungBiomes).setUnlocalizedName("dungBeetle");
 		
 		InsectiaItems.bRecluseSpider = new ItemStack(bRecluseSpider);
 		InsectiaItems.longLegSpider = new ItemStack(longLegSpider);

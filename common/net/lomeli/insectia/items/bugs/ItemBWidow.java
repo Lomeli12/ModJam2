@@ -13,6 +13,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 import java.util.List;
 import java.util.Random;
@@ -22,8 +23,8 @@ public class ItemBWidow extends ItemBugs{
 	private Random rand = new Random();
 	private int updateTick;
 	public ItemBWidow(int par1, String texture, ItemStack[] producedItems, 
-			int chance, int time, EnumInsectQuartersType type, int lifeSpan) {
-		super(par1, texture, producedItems, chance, time, type, lifeSpan);
+			int chance, int time, EnumInsectQuartersType type, int lifeSpan, BiomeGenBase[] biomes) {
+		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes);
 	}
 	
 	@Override

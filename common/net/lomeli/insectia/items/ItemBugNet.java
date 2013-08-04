@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class ItemBugNet extends ItemTool implements IBugNet{
 	
@@ -46,7 +47,14 @@ public class ItemBugNet extends ItemTool implements IBugNet{
 					int k = rand.nextInt(300);
 					for(Item drops : getNetType().getDrops()){
 						if(drops instanceof IInsect){
-							if(k < ((IInsect)drops).getDropChance()){
+							boolean canDrop = false;
+							for(BiomeGenBase biomes : ((IInsect)drops).getPreferedBiome()){
+								if(world.getBiomeGenForCoords(x, z).biomeID == biomes.biomeID){
+									canDrop = true;
+									break;
+								}
+							}
+							if(canDrop && k < ((IInsect)drops).getDropChance()){
 								EntityItem item = new EntityItem(world, x, y, z, new ItemStack(drops, 1));
 								world.spawnEntityInWorld(item);
 							}
@@ -54,6 +62,7 @@ public class ItemBugNet extends ItemTool implements IBugNet{
 					}
 				}
 			}
+			itemStack.damageItem(1, enity);
 		}
 		return true;
     }

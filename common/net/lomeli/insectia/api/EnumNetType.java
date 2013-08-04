@@ -13,7 +13,8 @@ public enum EnumNetType {
 	SAND(2, 3, new Item[]{InsectiaItems.armyAnts.getItem(), InsectiaItems.fireAnts.getItem(), InsectiaItems.univoltineWorm.getItem(),
 		InsectiaItems.polyvoltineWorm.getItem()}, new Block[]{Block.sand}),
 	WEB(3, 4, new Item[]{InsectiaItems.longLegSpider.getItem(), InsectiaItems.bRecluseSpider.getItem(), 
-		InsectiaItems.bWidowSpider.getItem()}, new Block[]{Block.web, Block.sapling});
+		InsectiaItems.bWidowSpider.getItem()}, new Block[]{ 
+		Block.web, Block.sapling, Block.cactus, Block.vine, Block.tallGrass, Block.deadBush});
 	
 	private final int typeID, dropChance;
 	private final Item[] bugRange;

@@ -27,8 +27,8 @@ public class ModRecipes {
 			ModItems.appleBit, ModItems.appleBit});
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.beefCooked), new Object[]{ ModItems.steakPiece, ModItems.steakPiece, 
 			ModItems.steakPiece, ModItems.steakPiece });
-		GameRegistry.addShapelessRecipe(new ItemStack(Block.cloth), new Object[]{ ModItems.woolFluff, ModItems.woolFluff,
-			ModItems.woolFluff, ModItems.woolFluff });
+		GameRegistry.addShapelessRecipe(new ItemStack(Block.cloth), new Object[]{ ModItems.woolFluff, ModItems.woolFluff, ModItems.woolFluff,
+			ModItems.woolFluff, ModItems.woolFluff, ModItems.woolFluff, ModItems.woolFluff, ModItems.woolFluff , ModItems.woolFluff });
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.web), new Object[]{ ModItems.stickyString, ModItems.stickyString,
 			ModItems.stickyString, ModItems.stickyString, ModItems.stickyString, ModItems.stickyString, ModItems.stickyString, 
 			ModItems.stickyString, ModItems.stickyString });
@@ -36,7 +36,7 @@ public class ModRecipes {
 			ModItems.breadCrumb});
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.leaves), new Object[]{ ModItems.leaf, ModItems.leaf, ModItems.leaf, ModItems.leaf, 
 			ModItems.leaf, ModItems.leaf, ModItems.leaf, ModItems.leaf, ModItems.leaf });
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.silk), new Object[]{ ModItems.silk, ModItems.silk });
+		GameRegistry.addShapelessRecipe(new ItemStack(Item.silk), new Object[]{ ModItems.silk, ModItems.silk, ModItems.silk, ModItems.silk });
 		GameRegistry.addRecipe(new ItemStack(ModItems.fertilizer), new Object[]{ " D ", "DBD", " D ", 'D', ModItems.dung, 
 			'B',new ItemStack(Item.dyePowder, 1, 15)});
 		

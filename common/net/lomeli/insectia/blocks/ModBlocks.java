@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 public class ModBlocks {
 	
 	public static Block livingQuartersDark, livingQuartersSweet, livingQuartersGreen,
-		livingQuartersSmelly, frameBlock, statusBlock;
+		livingQuartersSmelly, frameBlock, statusBlock, recluseTrap;
 	
 	public static void loadBlocks(){
 		livingQuartersDark = new BlockQuartersDark(BlockIDs.livingDarkID).setUnlocalizedName("livingQuartersDark");
@@ -26,8 +26,8 @@ public class ModBlocks {
 		livingQuartersSweet = new BlockQuartersSweet(BlockIDs.livingSweetID).setUnlocalizedName("livingQuartersSweet");
 		frameBlock = new BlockFrameBlock(BlockIDs.frameBlockID, Material.wood, "frameblock")
 			.setUnlocalizedName("frameblock");
-		statusBlock = new BlockStatusBlock(BlockIDs.statusBlockID, "statusblock")
-			.setUnlocalizedName("statusBlock");
+		statusBlock = new BlockStatusBlock(BlockIDs.statusBlockID).setUnlocalizedName("statusBlock");
+		recluseTrap = new BlockRecluseTrap(BlockIDs.recluseTrapID, "recluseTrap").setUnlocalizedName("recluseTrap");
 		
 		registerBlocks();
 	}
@@ -47,9 +47,11 @@ public class ModBlocks {
 		
 		GameRegistry.registerBlock(frameBlock, "Frame Block");
 		GameRegistry.registerBlock(statusBlock, "Status Block");
+		GameRegistry.registerBlock(recluseTrap, "Recluse Spider Trap");
 		
 		LanguageRegistry.addName(frameBlock, "Frame Block");
 		LanguageRegistry.addName(statusBlock, "Status Block");
+		LanguageRegistry.addName(recluseTrap, "Recluse Spider Trap");
 		
 		InsectiaBlocks.frameBlock = new ItemStack(frameBlock);
 		InsectiaBlocks.livingQuartersDark = new ItemStack(livingQuartersDark);
