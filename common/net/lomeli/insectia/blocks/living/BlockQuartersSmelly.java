@@ -1,7 +1,7 @@
 package net.lomeli.insectia.blocks.living;
 
 import net.lomeli.insectia.Insectia;
-import net.lomeli.insectia.api.IInsect;
+import net.lomeli.insectia.api.interfaces.IInsect;
 import net.lomeli.insectia.lib.ModStrings;
 import net.lomeli.insectia.tileentity.TileEntitySmelly;
 
@@ -23,6 +23,12 @@ public class BlockQuartersSmelly extends BlockContainer{
 	public BlockQuartersSmelly(int par1) {
 		super(par1, Material.wood);
 		this.setCreativeTab(Insectia.modTab);
+		this.setHardness(3F);
+	}
+	
+	@Override
+	public boolean hasTileEntity(int metadata){
+		return true;
 	}
 
 	@Override
@@ -63,7 +69,7 @@ public class BlockQuartersSmelly extends BlockContainer{
 		this.iconArray = new Icon[2];
 		
 		this.iconArray[0] = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":livingQuarters_3");
-		this.iconArray[1] = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":base");	
+		this.iconArray[1] = iconRegister.registerIcon("minecraft:planks_oak");	
 	}
 	
 	@Override

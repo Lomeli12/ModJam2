@@ -31,6 +31,8 @@ public class Insectia {
 	public static CreativeTabs modTab = new CreativeTabMod(CreativeTabs.getNextID(), ModStrings.MOD_NAME);
 	
 	private static ConfigMod modConfiguration;
+	
+	public static boolean limitWorkAtNight;
 
 	@Mod.EventHandler
 	public static void preInit(FMLPreInitializationEvent event){

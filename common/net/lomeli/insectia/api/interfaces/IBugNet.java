@@ -1,4 +1,5 @@
-package net.lomeli.insectia.api;
+package net.lomeli.insectia.api.interfaces;
+
 
 /**
  * Implement this in your custom nets

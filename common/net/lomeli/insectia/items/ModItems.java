@@ -2,13 +2,14 @@ package net.lomeli.insectia.items;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-import net.lomeli.insectia.api.EnumNetType;
-import net.lomeli.insectia.api.EnumInsectQuartersType;
 import net.lomeli.insectia.api.InsectRegistry;
 import net.lomeli.insectia.api.InsectiaItems;
-import net.lomeli.insectia.api.EnumNetType.EnumNetTypeHelper;
+import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
+import net.lomeli.insectia.api.interfaces.EnumNetType;
+import net.lomeli.insectia.api.interfaces.EnumNetType.EnumNetTypeHelper;
 import net.lomeli.insectia.items.bugs.ItemBWidow;
 import net.lomeli.insectia.items.bugs.ItemFireAnts;
+import net.lomeli.insectia.items.bugs.ItemForkkEater;
 import net.lomeli.insectia.items.bugs.ItemUnivoltineWorm;
 import net.lomeli.insectia.items.bugs.ItemPolyvoltineWorms;
 import net.lomeli.insectia.lib.ItemIDs;
@@ -20,7 +21,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 public class ModItems {
 
 	/* Spiders */
-	public static Item bRecluseSpider, longLegSpider, bWidowSpider;
+	public static Item bRecluseSpider, longLegSpider, bWidowSpider, forkkEater;
 	
 	/* Ants */
 	public static Item fireAnts, armyAnts;
@@ -65,7 +66,7 @@ public class ModItems {
 	public static Item webNet, dirtNet, sandNet, leafNet;
 	
 	/* Other Items */
-	public static Item treatedStick;
+	public static Item treatedStick, insectLarvae;
 	
 	public static void loadItems(){
 		//Produced Items
@@ -81,49 +82,54 @@ public class ModItems {
 		dung = new ItemGeneric(ItemIDs.dungID, "dung").setUnlocalizedName("dungball");
 		fertilizer = new ItemGeneric(ItemIDs.fertilizerID, "fertilizer").setUnlocalizedName("fertilizer");
 		treatedStick = new ItemGeneric(ItemIDs.treatedStickID, "treatedStick").setUnlocalizedName("treatedStick");
+		insectLarvae = new ItemLarvae(ItemIDs.insectLarvaeID, "larvae").setUnlocalizedName("larvae");
 		
 		spiderProduction = new ItemStack[]{ new ItemStack(stickyString), 
-				new ItemStack(trappedBug), new ItemStack(silk) };
+			new ItemStack(trappedBug), new ItemStack(silk) };
 		antProduction = new ItemStack[]{ new ItemStack(leaf), new ItemStack(appleBit), 
-				new ItemStack(cookieCrumb), new ItemStack(breadCrumb), new ItemStack(steakPiece) };
+			new ItemStack(cookieCrumb), new ItemStack(breadCrumb), new ItemStack(steakPiece) };
 		silkProduction = new ItemStack[]{ new ItemStack(silk), new ItemStack(woolFluff) };
 		beetleProduction = new ItemStack[]{ new ItemStack(dung) };
 		
 		//Spiders
 		bRecluseSpider = new ItemBugs(ItemIDs.bRecluseSpiderID, "bugs/bRecluseSpider", 
-			spiderProduction, 13, 150, EnumInsectQuartersType.DARK, 3, spiderBiomes).setUnlocalizedName("bRecluseSpider");
+			spiderProduction, 13, 150, EnumInsectQuartersType.DARK, 3, spiderBiomes, 1).setUnlocalizedName("bRecluseSpider");
 		longLegSpider = new ItemBugs(ItemIDs.longLegSpiderID, "bugs/longLegSpider", 
-			spiderProduction, 10, 130, EnumInsectQuartersType.DARK, 4, spiderBiomes).setUnlocalizedName("longLegSpider");
+			spiderProduction, 10, 130, EnumInsectQuartersType.DARK, 4, spiderBiomes, 1).setUnlocalizedName("longLegSpider");
 		bWidowSpider = new ItemBWidow(ItemIDs.bWidowSpiderID, "bugs/bWidowSpider", 
-			spiderProduction, 15, 175, EnumInsectQuartersType.DARK, 3, spiderBiomes).setUnlocalizedName("bWidownSpider");
+			spiderProduction, 15, 175, EnumInsectQuartersType.DARK, 3, spiderBiomes, 1).setUnlocalizedName("bWidownSpider");
+		forkkEater = new ItemForkkEater(ItemIDs.forkkEaterID, "bugs/forkkEater", spiderProduction,
+			10, 100, EnumInsectQuartersType.DARK, 3, spiderBiomes, 1).setUnlocalizedName("forkkEater");
 		
 		//Ants
 		fireAnts = new ItemFireAnts(ItemIDs.fireAntsID, "bugs/fireAnts", 
-			antProduction, 50, 90, EnumInsectQuartersType.SWEET, 7, antBiomes).setUnlocalizedName("fireAnts");
+			antProduction, 50, 90, EnumInsectQuartersType.SWEET, 7, antBiomes, 0).setUnlocalizedName("fireAnts");
 		armyAnts = new ItemBugs(ItemIDs.armyAntsID, "bugs/armyAnts", 
-			antProduction, 20, 75, EnumInsectQuartersType.SWEET, 10, antBiomes).setUnlocalizedName("armyAnts");
+			antProduction, 20, 75, EnumInsectQuartersType.SWEET, 10, antBiomes, 0).setUnlocalizedName("armyAnts");
 		
 		//Silk Worms
 		bivoltineWorm = new ItemBugs(ItemIDs.bivoltineWormID, "bugs/bivoltineWorm", 
-			silkProduction, 20, 125, EnumInsectQuartersType.GREEN, 10, silkWormBiomes).setUnlocalizedName("greenSilkWorm");
+			silkProduction, 20, 125, EnumInsectQuartersType.GREEN, 10, silkWormBiomes, 0).setUnlocalizedName("greenSilkWorm");
 		polyvoltineWorm = new ItemPolyvoltineWorms(ItemIDs.polyvoltineWormID, "bugs/polyvoltineWorm", silkProduction,
-			40, 60, EnumInsectQuartersType.GREEN, 10, silkWormBiomes).setUnlocalizedName("redSilkWorm");
+			40, 60, EnumInsectQuartersType.GREEN, 10, silkWormBiomes, 0).setUnlocalizedName("redSilkWorm");
 		univoltineWorm = new ItemUnivoltineWorm(ItemIDs.univoltineWormID, "bugs/univoltineWorm",
-			silkProduction, 5, 50, EnumInsectQuartersType.GREEN, 4, silkWormBiomes).setUnlocalizedName("pinkSilkWorm");
+			silkProduction, 5, 50, EnumInsectQuartersType.GREEN, 4, silkWormBiomes, 0).setUnlocalizedName("pinkSilkWorm");
 		
 		//Dung Beetle
 		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", 
-			beetleProduction, 25, 60, EnumInsectQuartersType.SMELLY, 15, dungBiomes).setUnlocalizedName("dungBeetle");
+			beetleProduction, 25, 60, EnumInsectQuartersType.SMELLY, 15, dungBiomes, -1).setUnlocalizedName("dungBeetle");
 		
 		InsectiaItems.bRecluseSpider = new ItemStack(bRecluseSpider);
 		InsectiaItems.longLegSpider = new ItemStack(longLegSpider);
 		InsectiaItems.bWidowSpider = new ItemStack(bWidowSpider);
+		InsectiaItems.forkkEater = new ItemStack(forkkEater);
 		InsectiaItems.fireAnts = new ItemStack(fireAnts);
 		InsectiaItems.armyAnts = new ItemStack(armyAnts);
 		InsectiaItems.bivoltineWorm = new ItemStack(bivoltineWorm);
 		InsectiaItems.polyvoltineWorm = new ItemStack(polyvoltineWorm);
 		InsectiaItems.univoltineWorm = new ItemStack(univoltineWorm);
 		InsectiaItems.dungBeetles = new ItemStack(dungBeetles);
+		InsectiaItems.insectLarvae = new ItemStack(insectLarvae);
 		
 		//Tools
 		webNet = new ItemBugNet(ItemIDs.webNetID, "tools/webnet", EnumNetType.WEB).setUnlocalizedName("spiderNet");
@@ -153,10 +159,12 @@ public class ModItems {
 		LanguageRegistry.addName(dung, "Ball of Dung");
 		LanguageRegistry.addName(fertilizer, "Fertilizer (BETA - Do not use!)");
 		LanguageRegistry.addName(treatedStick, "Treated Stick");
+		LanguageRegistry.addName(insectLarvae, "Insect Larvae");
 		
 		LanguageRegistry.addName(bRecluseSpider, "Brown Reclusive Spider");
 		LanguageRegistry.addName(longLegSpider, "Daddy Long Leg Spider");
 		LanguageRegistry.addName(bWidowSpider, "Black Widow Spider");
+		LanguageRegistry.addName(forkkEater, "Black & Yellow Garden Spider");
 		
 		LanguageRegistry.addName(fireAnts, "Fire Ants");
 		LanguageRegistry.addName(armyAnts, "Army Ants");
@@ -188,6 +196,7 @@ public class ModItems {
 		InsectRegistry.getInstance().registerInsect(bRecluseSpider, false);
 		InsectRegistry.getInstance().registerInsect(longLegSpider, false);
 		InsectRegistry.getInstance().registerInsect(bWidowSpider, false);
+		InsectRegistry.getInstance().registerInsect(forkkEater, false);
 		InsectRegistry.getInstance().registerInsect(fireAnts, true);
 		InsectRegistry.getInstance().registerInsect(armyAnts, true);
 		InsectRegistry.getInstance().registerInsect(bivoltineWorm, true);

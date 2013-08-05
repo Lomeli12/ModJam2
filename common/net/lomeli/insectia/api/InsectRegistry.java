@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import net.lomeli.insectia.api.interfaces.IInsect;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

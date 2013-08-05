@@ -1,6 +1,7 @@
 package net.lomeli.insectia.blocks;
 
-import net.lomeli.insectia.api.ILivingQuarters;
+import net.lomeli.insectia.api.interfaces.IInsect;
+import net.lomeli.insectia.api.interfaces.ILivingQuarters;
 import net.lomeli.insectia.lib.ModStrings;
 
 import net.minecraft.block.material.Material;
@@ -18,6 +19,7 @@ public class BlockStatusBlock extends BlockGeneric{
 	public BlockStatusBlock(int par1) {
 		super(par1, Material.tnt, "");
 		this.setBlockBounds(0F, 0F, 0F, 1F, 0.0625F, 1F);
+		this.setHardness(2F);
 	}
 	
 	@Override
@@ -45,8 +47,10 @@ public class BlockStatusBlock extends BlockGeneric{
 					if(tile instanceof IInventory){
 						if(((IInventory)tile).getStackInSlot(0) != null){
 							int life = ((IInventory)tile).getStackInSlot(0).getMaxDamage() - ((IInventory)tile).getStackInSlot(0).getItemDamage();
-							entityPlayer.addChatMessage("Bug: " + ((IInventory)tile).getStackInSlot(0).getDisplayName());
+							entityPlayer.addChatMessage("Insect: " + ((IInventory)tile).getStackInSlot(0).getDisplayName());
 							entityPlayer.addChatMessage("Health: " + life + "/" +((IInventory)tile).getStackInSlot(0).getMaxDamage());
+							if(!((ILivingQuarters)tile).canWork((IInsect)((IInventory)tile).getStackInSlot(0).getItem()))
+								entityPlayer.addChatMessage("Sleeping...");
 						}else{
 							entityPlayer.addChatMessage("Empty...");
 							if(((ILivingQuarters)tile).getQuartersType() != null)
@@ -60,8 +64,10 @@ public class BlockStatusBlock extends BlockGeneric{
 					}else if(tile instanceof ISidedInventory){
 						if(((ISidedInventory)tile).getStackInSlot(0) != null){
 							int life = ((ISidedInventory)tile).getStackInSlot(0).getMaxDamage() - ((ISidedInventory)tile).getStackInSlot(0).getItemDamage();
-							entityPlayer.addChatMessage("Bug: " + ((ISidedInventory)tile).getStackInSlot(0).getDisplayName());
+							entityPlayer.addChatMessage("Insect: " + ((ISidedInventory)tile).getStackInSlot(0).getDisplayName());
 							entityPlayer.addChatMessage("Health: " + life + "/" +((ISidedInventory)tile).getStackInSlot(0).getMaxDamage());
+							if(!((ILivingQuarters)tile).canWork((IInsect)((ISidedInventory)tile).getStackInSlot(0).getItem()))
+								entityPlayer.addChatMessage("Sleeping...");
 						}else{
 							entityPlayer.addChatMessage("Empty...");
 							if(((ILivingQuarters)tile).getQuartersType() != null)

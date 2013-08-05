@@ -2,7 +2,7 @@ package net.lomeli.insectia.items.bugs;
 
 import java.util.Random;
 
-import net.lomeli.insectia.api.EnumInsectQuartersType;
+import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
 import net.lomeli.insectia.items.ItemBugs;
 import net.lomeli.insectia.lib.ModInts;
 import net.minecraft.entity.Entity;
@@ -18,8 +18,8 @@ public class ItemFireAnts extends ItemBugs{
 	private int tick;
 	public ItemFireAnts(int par1, String texture, ItemStack[] producedItems, 
 		int chance, int time, EnumInsectQuartersType type, int lifeSpan,
-		BiomeGenBase[] biomes) {
-		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes);
+		BiomeGenBase[] biomes, int day) {
+		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes, day);
 	}
 
 	@Override

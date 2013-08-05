@@ -9,9 +9,9 @@ import net.minecraft.item.Item;
  */
 public class ItemIDs {
 	public static int bRecluseSpiderID, longLegSpiderID, bWidowSpiderID, fireAntsID, armyAntsID, 
-		bivoltineWormID, polyvoltineWormID, univoltineWormID, dungBeetlesID;
+		bivoltineWormID, polyvoltineWormID, univoltineWormID, dungBeetlesID, forkkEaterID;
 	public static int stickyStringID, trappedBugID, leafID, appleBitID, 
 		cookieCrumbID, breadCrumbID, steakPieceID, silkID, woolFluffID, 
-		dungID, fertilizerID, treatedStickID;
+		dungID, fertilizerID, treatedStickID, insectLarvaeID;
 	public static int webNetID, dirtNetID, sandNetID, leafNetID;
 }

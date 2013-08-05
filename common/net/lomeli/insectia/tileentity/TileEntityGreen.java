@@ -2,11 +2,15 @@ package net.lomeli.insectia.tileentity;
 
 import java.util.Random;
 
-import net.lomeli.insectia.api.EnumInsectQuartersType;
-import net.lomeli.insectia.api.IInsect;
-import net.lomeli.insectia.api.ILivingQuarters;
-import net.lomeli.insectia.api.EnumInsectQuartersType.EnumInsectQuartersHelper;
+import net.lomeli.insectia.Insectia;
+import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
+import net.lomeli.insectia.api.interfaces.IInsect;
+import net.lomeli.insectia.api.interfaces.ILivingQuarters;
+import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType.EnumInsectQuartersHelper;
+import net.lomeli.insectia.api.LarvaeUtil;
 import net.lomeli.insectia.blocks.ModBlocks;
+import net.lomeli.insectia.items.ItemLarvae;
+import net.lomeli.insectia.items.ModItems;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -82,6 +86,52 @@ public class TileEntityGreen extends TileEntity
 		}
 	}
 	
+	public void randomlyProduceChild(Random rand){
+		if(rand.nextInt(100) < 50){
+			ItemStack newBug = this.inventory[0].copy();
+			newBug.setItemDamage(0);
+			ItemStack larvae = new ItemStack(((IInsect)this.inventory[0].getItem()).getLarvaeItemID(), 
+				1, newBug.getItemDamage());
+			LarvaeUtil.writeInsect(larvae, newBug.itemID, newBug.getItemDamage());
+			for(int j = 0; j < this.inventory.length; j++){
+				if(this.isItemValidForSlot(j, larvae)){
+					this.setInventorySlotContents(j, larvae);
+					break;
+				}
+			}
+		}
+	}
+	
+	@Override
+	public boolean canWork(IInsect insect){
+		boolean canWork = true;
+		if(Insectia.limitWorkAtNight){
+			switch(insect.getPreferedTimeOfDay()){
+				case 0:
+					canWork = this.worldObj.isDaytime();
+					break;
+				case 1:
+					canWork = !this.worldObj.isDaytime();
+					break;
+				default:
+					break;
+			}
+		}	
+		return canWork;
+	}
+	
+	public boolean emptySlot(){
+		boolean slot = false;
+		for(int i = 1; i < this.inventory.length; i++){
+			if(this.inventory[i] == null){
+				slot = true;
+				break;
+			}
+		}
+		
+		return slot;
+	}
+	
 	@Override
 	public void updateEntity(){
 		super.updateEntity();
@@ -94,7 +144,8 @@ public class TileEntityGreen extends TileEntity
 				this.worldObj.markBlockForUpdate(xCoord, yCoord + 1, zCoord);
 			}
 			if(this.inventory[0] != null && (this.inventory[0].getItem() instanceof IInsect)){
-				tick++;
+				if(canWork((IInsect)this.inventory[0].getItem()) && emptySlot())
+					tick++;
 				if(tick >= ((IInsect)this.inventory[0].getItem()).getProductionTime()){
 					int j = rand.nextInt(1 + ((IInsect)this.inventory[0].getItem()).getItemsProduced().length);
 					producedItem(((IInsect)this.inventory[0].getItem()), j - 1);
@@ -103,14 +154,12 @@ public class TileEntityGreen extends TileEntity
 					else
 						((IInsect)this.inventory[0].getItem()).hurtBug(this.inventory[0], 1);
 					
-					if(this.worldObj.getBlockId(xCoord, yCoord + 1, zCoord) == ModBlocks.statusBlock.blockID){
-						this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord + 1, zCoord, this.getInsectLifePercentage() + 1, 2);
-						this.worldObj.markBlockForUpdate(xCoord, yCoord + 1, zCoord);
-					}
 					tick = 0;
 				}
-				if(this.inventory[0].getItemDamage() >= this.inventory[0].getMaxDamage())
+				if(this.inventory[0].getItemDamage() >= this.inventory[0].getMaxDamage()){
+					this.randomlyProduceChild(rand);
 					this.setInventorySlotContents(0, null);
+				}
 			}
 		}
 	}

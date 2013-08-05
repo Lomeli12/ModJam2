@@ -6,21 +6,29 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import net.lomeli.insectia.items.ModItems;
+import net.lomeli.insectia.lib.ModStrings;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Icon;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockRecluseTrap extends BlockGeneric{
 
-	public BlockRecluseTrap(int par1, String texture) {
-		super(par1, Material.cactus, texture);
-		this.setHardness(3F);
+	public BlockRecluseTrap(int par1) {
+		super(par1, Material.cactus, "");
+		this.setHardness(1F);
+	}
+	
+	@Override
+	public void registerIcons(IconRegister iconRegister){
+		this.blockIcon = iconRegister.registerIcon("minecraft:grass_top");
 	}
 	
 	public boolean canBlockStay(World world, int x, int y, int z){
@@ -39,6 +47,11 @@ public class BlockRecluseTrap extends BlockGeneric{
         double d1 = 1.0D;
         return ColorizerGrass.getGrassColor(d0, d1);
     }
+	
+	@SideOnly(Side.CLIENT)
+	public int getRenderColor(int par1){
+		return this.getBlockColor();
+	}
 	
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4){
@@ -63,7 +76,7 @@ public class BlockRecluseTrap extends BlockGeneric{
 	}
 	
 	public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity){
-		par5Entity.attackEntityFrom(DamageSource.cactus, 1F);
+		par5Entity.attackEntityFrom(DamageSource.cactus, 2F);
 	}
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4){

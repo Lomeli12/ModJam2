@@ -1,4 +1,4 @@
-package net.lomeli.insectia.api;
+package net.lomeli.insectia.api.interfaces;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,4 +30,14 @@ public interface IInsect {
 	public void hurtBug(ItemStack itemStack, int damage);
 	
 	public BiomeGenBase[] getPreferedBiome();
+	
+	public int getLarvaeItemID();
+	
+	public int larvaeGrowthTime();
+	
+	/**
+	 * 0 for Day, 1 for Night, anything else to ignore time.
+	 * @author Anthony
+	 */
+	public int getPreferedTimeOfDay();
 }

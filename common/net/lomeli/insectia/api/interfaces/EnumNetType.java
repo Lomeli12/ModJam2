@@ -1,4 +1,4 @@
-package net.lomeli.insectia.api;
+package net.lomeli.insectia.api.interfaces;
 
 import net.lomeli.insectia.api.InsectiaItems;
 
@@ -9,11 +9,12 @@ import net.minecraftforge.common.EnumHelper;
 public enum EnumNetType {
 	DIRT(0, 2, new Item[]{InsectiaItems.armyAnts.getItem(), InsectiaItems.fireAnts.getItem(), 
 		InsectiaItems.dungBeetles.getItem(), InsectiaItems.polyvoltineWorm.getItem()}, new Block[]{Block.dirt, Block.grass}),
-	LEAVES(1, 1, new Item[]{InsectiaItems.bivoltineWorm.getItem(), InsectiaItems.bWidowSpider.getItem()}, new Block[]{Block.leaves}),
+	LEAVES(1, 1, new Item[]{InsectiaItems.bivoltineWorm.getItem(), InsectiaItems.bWidowSpider.getItem(),
+		InsectiaItems.forkkEater.getItem()}, new Block[]{Block.leaves}),
 	SAND(2, 3, new Item[]{InsectiaItems.armyAnts.getItem(), InsectiaItems.fireAnts.getItem(), InsectiaItems.univoltineWorm.getItem(),
 		InsectiaItems.polyvoltineWorm.getItem()}, new Block[]{Block.sand}),
 	WEB(3, 4, new Item[]{InsectiaItems.longLegSpider.getItem(), InsectiaItems.bRecluseSpider.getItem(), 
-		InsectiaItems.bWidowSpider.getItem()}, new Block[]{ 
+		InsectiaItems.bWidowSpider.getItem(), InsectiaItems.forkkEater.getItem()}, new Block[]{ 
 		Block.web, Block.sapling, Block.cactus, Block.vine, Block.tallGrass, Block.deadBush});
 	
 	private final int typeID, dropChance;

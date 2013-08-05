@@ -1,10 +1,14 @@
 package net.lomeli.insectia.blocks.living;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.lomeli.insectia.Insectia;
-import net.lomeli.insectia.api.IInsect;
+import net.lomeli.insectia.api.interfaces.IInsect;
+import net.lomeli.insectia.blocks.ModBlocks;
 import net.lomeli.insectia.lib.ModStrings;
 import net.lomeli.insectia.tileentity.TileEntityDark;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -23,6 +27,7 @@ public class BlockQuartersDark extends BlockContainer{
 	public BlockQuartersDark(int par1) {
 		super(par1, Material.wood);
 		this.setCreativeTab(Insectia.modTab);
+		this.setHardness(3F);
 	}
 
 	@Override
@@ -63,13 +68,18 @@ public class BlockQuartersDark extends BlockContainer{
 		this.iconArray = new Icon[2];
 		
 		this.iconArray[0] = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":livingQuarters_0");
-		this.iconArray[1] = iconRegister.registerIcon(ModStrings.MOD_ID.toLowerCase() + ":base");	
+		this.iconArray[1] = iconRegister.registerIcon("minecraft:planks_oak");	
 	}
 	
 	@Override
 	public Icon getIcon(int par1, int par2){
 		return par1 < 2 ? this.iconArray[1] : this.iconArray[0];
     }
+	
+	@Override
+	public boolean hasTileEntity(int metadata){
+		return true;
+	}
 	
 	@Override
 	public void breakBlock(World world, int x, int y, int z, int par5, int par6){

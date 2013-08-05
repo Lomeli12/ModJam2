@@ -1,4 +1,4 @@
-package net.lomeli.insectia.api;
+package net.lomeli.insectia.api.interfaces;
 
 import java.util.ArrayList;
 import java.util.List;

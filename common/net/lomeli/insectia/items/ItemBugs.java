@@ -2,8 +2,8 @@ package net.lomeli.insectia.items;
 
 import java.util.Random;
 
-import net.lomeli.insectia.api.EnumInsectQuartersType;
-import net.lomeli.insectia.api.IInsect;
+import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
+import net.lomeli.insectia.api.interfaces.IInsect;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,19 +15,21 @@ public class ItemBugs extends ItemGeneric implements IInsect{
 	private ItemStack[] itemsProduced;
 	private int dropChance;
 	private int time;
+	private int timeOfDay;
 	private EnumInsectQuartersType  quartersType;
 	private Random randomItem = new Random();
 	private BiomeGenBase[] biomes;
 	
 	public ItemBugs(int par1, String texture, ItemStack[] producedItems, 
 		int dropChance, int time, EnumInsectQuartersType quartersType, 
-		int lifeSpan, BiomeGenBase[] biomes) {
+		int lifeSpan, BiomeGenBase[] biomes, int timeOfDay) {
 		super(par1, texture);
 		this.dropChance = dropChance;
 		this.time = time;
 		this.quartersType = quartersType;
 		this.itemsProduced = producedItems;
 		this.biomes = biomes;
+		this.timeOfDay = timeOfDay;
 		this.setMaxDamage(lifeSpan);
 		this.setMaxStackSize(1);
 	}
@@ -74,6 +76,21 @@ public class ItemBugs extends ItemGeneric implements IInsect{
 	@Override
 	public BiomeGenBase[] getPreferedBiome() {
 		return this.biomes;
+	}
+
+	@Override
+	public int getLarvaeItemID() {
+		return ModItems.insectLarvae.itemID;
+	}
+
+	@Override
+	public int larvaeGrowthTime() {
+		return 6000;
+	}
+
+	@Override
+	public int getPreferedTimeOfDay() {
+		return this.timeOfDay;
 	}
 
 }

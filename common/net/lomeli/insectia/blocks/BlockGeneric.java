@@ -8,11 +8,12 @@ import net.minecraft.client.renderer.texture.IconRegister;
 
 public class BlockGeneric extends Block{
 
-	private String blockTexture;
+	protected String blockTexture;
 	public BlockGeneric(int par1, Material par2Material, String texture) {
 		super(par1, par2Material);
 		blockTexture = texture;
 		this.setCreativeTab(Insectia.modTab);
+		this.setHardness(0.5F);
 	}
 	
 	@Override

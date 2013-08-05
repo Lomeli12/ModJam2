@@ -14,10 +14,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.common.MinecraftForge;
+
 public class ModBlocks {
 	
 	public static Block livingQuartersDark, livingQuartersSweet, livingQuartersGreen,
-		livingQuartersSmelly, frameBlock, statusBlock, recluseTrap;
+		livingQuartersSmelly, frameBlock, statusBlock, recluseTrap, incubatorTank, advancedFrame,
+		advancedHousing;
 	
 	public static void loadBlocks(){
 		livingQuartersDark = new BlockQuartersDark(BlockIDs.livingDarkID).setUnlocalizedName("livingQuartersDark");
@@ -27,7 +30,8 @@ public class ModBlocks {
 		frameBlock = new BlockFrameBlock(BlockIDs.frameBlockID, Material.wood, "frameblock")
 			.setUnlocalizedName("frameblock");
 		statusBlock = new BlockStatusBlock(BlockIDs.statusBlockID).setUnlocalizedName("statusBlock");
-		recluseTrap = new BlockRecluseTrap(BlockIDs.recluseTrapID, "recluseTrap").setUnlocalizedName("recluseTrap");
+		recluseTrap = new BlockRecluseTrap(BlockIDs.recluseTrapID).setUnlocalizedName("recluseTrap");
+		incubatorTank = new BlockIncubator(BlockIDs.incubationTankID).setUnlocalizedName("incubator");
 		
 		registerBlocks();
 	}
@@ -48,10 +52,20 @@ public class ModBlocks {
 		GameRegistry.registerBlock(frameBlock, "Frame Block");
 		GameRegistry.registerBlock(statusBlock, "Status Block");
 		GameRegistry.registerBlock(recluseTrap, "Recluse Spider Trap");
+		GameRegistry.registerBlock(incubatorTank, "Growth Chamber");
 		
 		LanguageRegistry.addName(frameBlock, "Frame Block");
 		LanguageRegistry.addName(statusBlock, "Status Block");
 		LanguageRegistry.addName(recluseTrap, "Recluse Spider Trap");
+		LanguageRegistry.addName(incubatorTank, "Growth Chamber");
+		
+		MinecraftForge.setBlockHarvestLevel(frameBlock, "axe", 1);
+		MinecraftForge.setBlockHarvestLevel(livingQuartersDark, "axe", 1);
+		MinecraftForge.setBlockHarvestLevel(livingQuartersGreen, "axe", 1);
+		MinecraftForge.setBlockHarvestLevel(livingQuartersSmelly, "axe", 1);
+		MinecraftForge.setBlockHarvestLevel(livingQuartersSweet, "axe", 1);
+		MinecraftForge.setBlockHarvestLevel(incubatorTank, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(statusBlock, "pickaxe", 1);
 		
 		InsectiaBlocks.frameBlock = new ItemStack(frameBlock);
 		InsectiaBlocks.livingQuartersDark = new ItemStack(livingQuartersDark);
@@ -59,6 +73,7 @@ public class ModBlocks {
 		InsectiaBlocks.livingQuartersSmelly = new ItemStack(livingQuartersSmelly);
 		InsectiaBlocks.livingQuartersSweet = new ItemStack(livingQuartersSweet);
 		InsectiaBlocks.statusBlock = new ItemStack(statusBlock);
+		InsectiaBlocks.insectIncubator = new ItemStack(incubatorTank);
 	}
 
 }

@@ -1,4 +1,5 @@
-package net.lomeli.insectia.api;
+package net.lomeli.insectia.api.interfaces;
+
 
 /**
  * Implement this in the tile entity of your
@@ -13,5 +14,7 @@ public interface ILivingQuarters {
 	public void setQuartersType(EnumInsectQuartersType type);
 	
 	public int getInsectLifePercentage();
+	
+	public boolean canWork(IInsect insect);
 
 }

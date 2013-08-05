@@ -2,7 +2,7 @@ package net.lomeli.insectia.items.bugs;
 
 import java.util.Random;
 
-import net.lomeli.insectia.api.EnumInsectQuartersType;
+import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
 import net.lomeli.insectia.items.ItemBugs;
 import net.lomeli.insectia.lib.ModInts;
 
@@ -18,8 +18,8 @@ public class ItemUnivoltineWorm extends ItemBugs{
 
 	public ItemUnivoltineWorm(int par1, String texture, ItemStack[] producedItems,
 			int dropChance, int time, EnumInsectQuartersType quartersType,
-			int lifeSpan, BiomeGenBase[] biomes) {
-		super(par1, texture, producedItems, dropChance, time, quartersType, lifeSpan, biomes);
+			int lifeSpan, BiomeGenBase[] biomes, int day) {
+		super(par1, texture, producedItems, dropChance, time, quartersType, lifeSpan, biomes, day);
 	}
 	
 	private int updateTick;

@@ -1,6 +1,6 @@
 package net.lomeli.insectia.items.bugs;
 
-import net.lomeli.insectia.api.EnumInsectQuartersType;
+import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
 import net.lomeli.insectia.items.ItemBugs;
 import net.lomeli.insectia.lib.ModInts;
 
@@ -23,8 +23,9 @@ public class ItemBWidow extends ItemBugs{
 	private Random rand = new Random();
 	private int updateTick;
 	public ItemBWidow(int par1, String texture, ItemStack[] producedItems, 
-			int chance, int time, EnumInsectQuartersType type, int lifeSpan, BiomeGenBase[] biomes) {
-		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes);
+			int chance, int time, EnumInsectQuartersType type, int lifeSpan, 
+			BiomeGenBase[] biomes, int day) {
+		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes, day);
 	}
 	
 	@Override

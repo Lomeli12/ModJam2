@@ -4,9 +4,9 @@ import java.util.Random;
 
 import net.lomeli.insectia.Insectia;
 import net.lomeli.insectia.lib.ModStrings;
-import net.lomeli.insectia.api.EnumNetType;
-import net.lomeli.insectia.api.IInsect;
-import net.lomeli.insectia.api.IBugNet;
+import net.lomeli.insectia.api.interfaces.EnumNetType;
+import net.lomeli.insectia.api.interfaces.IBugNet;
+import net.lomeli.insectia.api.interfaces.IInsect;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;

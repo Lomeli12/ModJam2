@@ -26,7 +26,8 @@ public class ModRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.appleRed), new Object[]{ ModItems.appleBit, ModItems.appleBit,
 			ModItems.appleBit, ModItems.appleBit});
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.beefCooked), new Object[]{ ModItems.steakPiece, ModItems.steakPiece, 
-			ModItems.steakPiece, ModItems.steakPiece });
+			ModItems.steakPiece, ModItems.steakPiece, ModItems.steakPiece, ModItems.steakPiece, ModItems.steakPiece,
+			ModItems.steakPiece, ModItems.steakPiece});
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.cloth), new Object[]{ ModItems.woolFluff, ModItems.woolFluff, ModItems.woolFluff,
 			ModItems.woolFluff, ModItems.woolFluff, ModItems.woolFluff, ModItems.woolFluff, ModItems.woolFluff , ModItems.woolFluff });
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.web), new Object[]{ ModItems.stickyString, ModItems.stickyString,
@@ -78,8 +79,14 @@ public class ModRecipes {
 		
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.statusBlock), new Object[]{ "SIS","IFI","SIS", 'I',Item.ingotIron, 'S',Block.stone, 
 			'F',ModBlocks.frameBlock});
-		if(!OreDictionary.getOres("ingotTin").isEmpty())
+		if(!OreDictionary.getOres("ingotTin").isEmpty()){
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.statusBlock), true, "SIS","IFI","SIS", 'I',"ingotTin", 
 				'S',Block.stone, 'F',ModBlocks.frameBlock));
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.incubatorTank), true,
+					"IGI", "GFG", "IGI", 'I',"ingotTin", 'G',Block.thinGlass, 'F',ModBlocks.frameBlock));
+		}
+		
+		GameRegistry.addRecipe(new ItemStack(ModBlocks.incubatorTank), new Object[]{"IGI", "GFG", "IGI", 
+			'I',Item.ingotIron, 'G',Block.thinGlass, 'F',ModBlocks.frameBlock});
 	}
 }

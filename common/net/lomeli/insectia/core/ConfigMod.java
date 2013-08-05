@@ -2,6 +2,7 @@ package net.lomeli.insectia.core;
 
 import java.io.File;
 
+import net.lomeli.insectia.Insectia;
 import net.lomeli.insectia.lib.BlockIDs;
 import net.lomeli.insectia.lib.ItemIDs;
 import net.lomeli.insectia.lib.ModInts;
@@ -39,18 +40,19 @@ public class ConfigMod {
 		ItemIDs.bRecluseSpiderID = config.get("Bugs", "BrownRecluseSpider", 661).getInt(661);
 		ItemIDs.longLegSpiderID = config.get("Bugs", "DaddyLongLegSpider", 662).getInt(662);
 		ItemIDs.bWidowSpiderID = config.get("Bugs", "BlackWidowSpider", 663).getInt(663);
+		ItemIDs.forkkEaterID = config.get("Bugs", "forkkEater", 664).getInt(664);
 		
 		//Ants
-		ItemIDs.fireAntsID = config.get("Bugs", "FireAnts", 664).getInt(664);
-		ItemIDs.armyAntsID = config.get("Bugs", "ArmyAnts", 665).getInt(665);
+		ItemIDs.fireAntsID = config.get("Bugs", "FireAnts", 665).getInt(665);
+		ItemIDs.armyAntsID = config.get("Bugs", "ArmyAnts", 666).getInt(666);
 		
 		//SilkWorms
-		ItemIDs.bivoltineWormID = config.get("Bugs", "bivoltineSilkWorm", 666).getInt(666);
-		ItemIDs.polyvoltineWormID = config.get("Bugs", "polyvoltineSilkWorm", 667).getInt(667);
-		ItemIDs.univoltineWormID = config.get("Bugs", "univoltineSilkWorm", 668).getInt(668);
+		ItemIDs.bivoltineWormID = config.get("Bugs", "bivoltineSilkWorm", 667).getInt(667);
+		ItemIDs.polyvoltineWormID = config.get("Bugs", "polyvoltineSilkWorm", 668).getInt(668);
+		ItemIDs.univoltineWormID = config.get("Bugs", "univoltineSilkWorm", 669).getInt(669);
 		
 		//DungBeetles
-		ItemIDs.dungBeetlesID = config.get("Bugs", "DungBeetle", 669).getInt(669);
+		ItemIDs.dungBeetlesID = config.get("Bugs", "DungBeetle", 670).getInt(670);
 		
 		//Tools
 		ItemIDs.webNetID = config.get("Tools", "webNet", 680).getInt(680);
@@ -58,6 +60,7 @@ public class ConfigMod {
 		ItemIDs.sandNetID = config.get("Tools", "sandNet", 682).getInt(682);
 		ItemIDs.leafNetID = config.get("Tools", "leafNet", 683).getInt(683);
 		ItemIDs.treatedStickID = config.get("Items", "stick", 684).getInt(684);
+		ItemIDs.insectLarvaeID = config.get("Bugs", "insectLarvae", 685).getInt(685);
 		
 		config.save();
 	}
@@ -74,6 +77,9 @@ public class ConfigMod {
 		BlockIDs.frameBlockID = config.get("Blocks", "frameBlock", 634).getInt(634);
 		BlockIDs.statusBlockID = config.get("Blocks", "statusBlock", 635).getInt(635);
 		BlockIDs.recluseTrapID = config.get("Blocks", "recluseTrap", 636).getInt(636);
+		BlockIDs.incubationTankID = config.get("Blocks", "incubator", 637).getInt(637);
+		BlockIDs.advancedFrameID = config.get("Blocks", "advancedFrame", 638).getInt(638);
+		BlockIDs.advancedHousingID = config.get("Blocks", "advancedHousing", 639).getInt(639);
 		
 		config.save();
 	}
@@ -84,6 +90,7 @@ public class ConfigMod {
 		config.load();
 		
 		ModInts.chanceOfBite = config.get("Options", "ChanceOfBugBite", 40).getInt(40);
+		Insectia.limitWorkAtNight = config.get("Options", "limitWorkAtNight", true).getBoolean(true);
 		
 		config.save();
 	}
