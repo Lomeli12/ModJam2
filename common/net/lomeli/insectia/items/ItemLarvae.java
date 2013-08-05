@@ -2,7 +2,7 @@ package net.lomeli.insectia.items;
 
 import java.util.List;
 
-import net.lomeli.insectia.api.LarvaeUtil;
+import net.lomeli.insectia.api.InsectiaAPI;
 import net.lomeli.insectia.api.interfaces.ILarvae;
 import net.lomeli.insectia.lib.ModStrings;
 
@@ -24,7 +24,7 @@ public class ItemLarvae extends ItemGeneric implements ILarvae{
 	@Override
 	public void onUpdate(ItemStack itemStack, World world, Entity entity, int par4, boolean par5){
 		if(world != null){
-			ItemStack insect = LarvaeUtil.getInsect(itemStack);
+			ItemStack insect = InsectiaAPI.getInsect(itemStack);
 			if(insect != null)
 				this.icon = insect.getItem().getIconFromDamage(insect.getItemDamage());
 		}
@@ -32,13 +32,13 @@ public class ItemLarvae extends ItemGeneric implements ILarvae{
 	
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, 
 			List par3List, boolean par4) {
-		ItemStack stack = LarvaeUtil.getInsect(par1ItemStack);
+		ItemStack stack = InsectiaAPI.getInsect(par1ItemStack);
 		if(stack != null)
 			par3List.add(stack.getDisplayName());
 	}
 
 	@Override
 	public ItemStack getLarveType(ItemStack stack) {
-		return LarvaeUtil.getInsect(stack);
+		return InsectiaAPI.getInsect(stack);
 	}
 }

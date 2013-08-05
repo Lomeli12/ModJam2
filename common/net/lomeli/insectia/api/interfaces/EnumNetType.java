@@ -1,26 +1,25 @@
 package net.lomeli.insectia.api.interfaces;
 
+import java.util.List;
+
+import net.lomeli.insectia.api.InsectiaAPI;
 import net.lomeli.insectia.api.InsectiaItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.EnumHelper;
 
 public enum EnumNetType {
-	DIRT(0, 2, new Item[]{InsectiaItems.armyAnts.getItem(), InsectiaItems.fireAnts.getItem(), 
-		InsectiaItems.dungBeetles.getItem(), InsectiaItems.polyvoltineWorm.getItem()}, new Block[]{Block.dirt, Block.grass}),
-	LEAVES(1, 1, new Item[]{InsectiaItems.bivoltineWorm.getItem(), InsectiaItems.bWidowSpider.getItem(),
-		InsectiaItems.forkkEater.getItem()}, new Block[]{Block.leaves}),
-	SAND(2, 3, new Item[]{InsectiaItems.armyAnts.getItem(), InsectiaItems.fireAnts.getItem(), InsectiaItems.univoltineWorm.getItem(),
-		InsectiaItems.polyvoltineWorm.getItem()}, new Block[]{Block.sand}),
-	WEB(3, 4, new Item[]{InsectiaItems.longLegSpider.getItem(), InsectiaItems.bRecluseSpider.getItem(), 
-		InsectiaItems.bWidowSpider.getItem(), InsectiaItems.forkkEater.getItem()}, new Block[]{ 
-		Block.web, Block.sapling, Block.cactus, Block.vine, Block.tallGrass, Block.deadBush});
+	DIRT(0, 2, InsectiaAPI.dirtTool, InsectiaAPI.dirtBlock),
+	LEAVES(1, 1, InsectiaAPI.leafTool, InsectiaAPI.leafBlock),
+	SAND(2, 3, InsectiaAPI.sandTool, InsectiaAPI.sandBlock),
+	WEB(3, 4, InsectiaAPI.webTool, InsectiaAPI.webBlock);
 	
 	private final int typeID, dropChance;
-	private final Item[] bugRange;
-	private final Block[] blockRange;
-	private EnumNetType(int id, int chance, Item[] drops, Block[] blockRange){
+	private final List<ItemStack> bugRange;
+	private final List<Block> blockRange;
+	private EnumNetType(int id, int chance, List<ItemStack> drops, List<Block> blockRange){
 		this.typeID = id;
 		this.dropChance = chance;
 		this.bugRange = drops;
@@ -35,16 +34,16 @@ public enum EnumNetType {
 		return this.dropChance;
 	}
 	
-	public Item[] getDrops(){
+	public List<ItemStack> getDrops(){
 		return this.bugRange;
 	}
 	
-	public Block[] getBlocks(){
+	public List<Block> getBlocks(){
 		return this.blockRange;
 	}
 	
 	public static class EnumNetTypeHelper{
-		public static EnumNetType addNetType(String name, int id, int chance, Item[] drops, Block[] blockRange){
+		public static EnumNetType addNetType(String name, int id, int chance, ItemStack[] drops, Block[] blockRange){
 			return EnumHelper.addEnum(EnumNetType.class, name, id, chance, drops, blockRange);
 		}
 	}

@@ -2,7 +2,7 @@ package net.lomeli.insectia.items.bugs;
 
 import java.util.Random;
 
-import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
+import net.lomeli.insectia.api.interfaces.EnumHousingType;
 import net.lomeli.insectia.items.ItemBugs;
 import net.lomeli.insectia.lib.ModInts;
 import net.minecraft.entity.Entity;
@@ -17,7 +17,7 @@ public class ItemFireAnts extends ItemBugs{
 	private Random rand = new Random();
 	private int tick;
 	public ItemFireAnts(int par1, String texture, ItemStack[] producedItems, 
-		int chance, int time, EnumInsectQuartersType type, int lifeSpan,
+		int chance, int time, EnumHousingType type, int lifeSpan,
 		BiomeGenBase[] biomes, int day) {
 		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes, day);
 	}
@@ -28,7 +28,7 @@ public class ItemFireAnts extends ItemBugs{
 			tick++;
 			if(tick >= 30){
 				int roll = rand.nextInt(100);
-				if(roll < ModInts.chanceOfBite){
+				if(roll < ModInts.chanceOfBite && !((EntityPlayer)entity).capabilities.isCreativeMode){
 					((EntityPlayer)entity).setFire(10000);
 					((EntityPlayer)entity).setFire(10000);
 				}

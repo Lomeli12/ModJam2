@@ -33,7 +33,8 @@ public class TileEntityIncubator extends TileEntity
 		if(!this.worldObj.isRemote){
 			if(this.inventory[0] != null && 
 				this.inventory[0].getItem() instanceof ILarvae){
-				if(this.worldObj.isDaytime())
+				if(this.worldObj.isDaytime() || 
+					this.worldObj.getLightBrightness(xCoord, yCoord, zCoord) > 0.4F)
 					tick++;
 				
 				item = ((ILarvae)this.inventory[0].getItem()).getLarveType(this.inventory[0]);

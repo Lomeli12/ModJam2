@@ -7,11 +7,11 @@ package net.lomeli.insectia.api.interfaces;
  * @author Anthony
  *
  */
-public interface ILivingQuarters {
+public interface IHousing {
 	
-	public EnumInsectQuartersType getQuartersType();
+	public EnumHousingType getQuartersType();
 
-	public void setQuartersType(EnumInsectQuartersType type);
+	public void setQuartersType(EnumHousingType type);
 	
 	public int getInsectLifePercentage();
 	

@@ -3,14 +3,12 @@ package net.lomeli.insectia.tileentity;
 import java.util.Random;
 
 import net.lomeli.insectia.Insectia;
-import net.lomeli.insectia.api.LarvaeUtil;
-import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
+import net.lomeli.insectia.api.InsectiaAPI;
+import net.lomeli.insectia.api.interfaces.EnumHousingType;
+import net.lomeli.insectia.api.interfaces.EnumHousingType.EnumHousingHelper;
+import net.lomeli.insectia.api.interfaces.IHousing;
 import net.lomeli.insectia.api.interfaces.IInsect;
-import net.lomeli.insectia.api.interfaces.ILivingQuarters;
-import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType.EnumInsectQuartersHelper;
 import net.lomeli.insectia.blocks.ModBlocks;
-import net.lomeli.insectia.items.ItemLarvae;
-import net.lomeli.insectia.items.ModItems;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -23,14 +21,14 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityDark extends TileEntity
-	implements IInventory, ILivingQuarters{
+	implements IInventory, IHousing{
 	
 	private ItemStack[] inventory;
-	private EnumInsectQuartersType type;
+	private EnumHousingType type;
 	
 	public TileEntityDark(){
 		this.inventory = new ItemStack[4];
-		this.type = EnumInsectQuartersType.DARK;
+		this.type = EnumHousingType.DARK;
 	}
 	
 	private int tick;
@@ -51,7 +49,7 @@ public class TileEntityDark extends TileEntity
 				this.inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
 		}
 		
-		this.setQuartersType(EnumInsectQuartersHelper.getTypeByID(nbtTag.getInteger("QuarterType")));
+		this.setQuartersType(EnumHousingHelper.getTypeByID(nbtTag.getInteger("QuarterType")));
 	}
 	
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound){
@@ -92,7 +90,7 @@ public class TileEntityDark extends TileEntity
 			newBug.setItemDamage(0);
 			ItemStack larvae = new ItemStack(((IInsect)this.inventory[0].getItem()).getLarvaeItemID(), 
 				1, newBug.getItemDamage());
-			LarvaeUtil.writeInsect(larvae, newBug.itemID, newBug.getItemDamage());
+			InsectiaAPI.writeInsect(larvae, newBug.itemID, newBug.getItemDamage());
 			for(int j = 0; j < this.inventory.length; j++){
 				if(this.isItemValidForSlot(j, larvae)){
 					this.setInventorySlotContents(j, larvae);
@@ -108,7 +106,8 @@ public class TileEntityDark extends TileEntity
 		if(Insectia.limitWorkAtNight){
 			switch(insect.getPreferedTimeOfDay()){
 				case 0:
-					canWork = this.worldObj.isDaytime();
+					canWork = this.worldObj.isDaytime() 
+						|| (this.worldObj.getLightBrightness(xCoord, yCoord, zCoord) > 0.4F);
 					break;
 				case 1:
 					canWork = !this.worldObj.isDaytime();
@@ -179,12 +178,12 @@ public class TileEntityDark extends TileEntity
 	}
 
 	@Override
-	public EnumInsectQuartersType getQuartersType() {
+	public EnumHousingType getQuartersType() {
 		return this.type;
 	}
 
 	@Override
-	public void setQuartersType(EnumInsectQuartersType type) {
+	public void setQuartersType(EnumHousingType type) {
 		this.type = type;
 	}
 

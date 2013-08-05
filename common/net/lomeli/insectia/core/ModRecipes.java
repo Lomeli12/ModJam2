@@ -45,8 +45,10 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ItemStack(ModItems.webNet), new Object[]{ "TTS", "TTS", "  S", 'S',Item.stick, 'T',Item.silk});
 		GameRegistry.addRecipe(new ItemStack(ModItems.sandNet), new Object[]{ "TTT", "TWT","TTT", 'T',ModItems.treatedStick, 'W',Block.cloth});
 		GameRegistry.addRecipe(new ItemStack(ModItems.dirtNet), new Object[]{ " II", " SI", 'S',ModItems.treatedStick,'I',Item.ingotIron});
-		if(!OreDictionary.getOres("ingotTin").isEmpty())
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.dirtNet), true, " II", "SI", 'I',"ingotTin", 'S',Item.stick));
+		if(!OreDictionary.getOres("ingotTin").isEmpty()){
+		// Crashes games for some reason... D=
+		//	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.dirtNet), true, " II", "SI", 'I',"ingotTin", 'S',Item.stick));
+		}
 		
 		GameRegistry.addRecipe(new ItemStack(ModItems.leafNet), new Object[]{" SW", " TS", "T  ", 'S',Item.silk, 'T',Item.stick, 'W',Block.cloth});
 		

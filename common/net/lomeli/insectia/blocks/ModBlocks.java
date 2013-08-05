@@ -3,6 +3,7 @@ package net.lomeli.insectia.blocks;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
+import net.lomeli.insectia.api.InsectiaAPI;
 import net.lomeli.insectia.api.InsectiaBlocks;
 import net.lomeli.insectia.blocks.living.BlockQuartersDark;
 import net.lomeli.insectia.blocks.living.BlockQuartersGreen;
@@ -66,6 +67,7 @@ public class ModBlocks {
 		MinecraftForge.setBlockHarvestLevel(livingQuartersSweet, "axe", 1);
 		MinecraftForge.setBlockHarvestLevel(incubatorTank, "pickaxe", 1);
 		MinecraftForge.setBlockHarvestLevel(statusBlock, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(recluseTrap, "axe", 1);
 		
 		InsectiaBlocks.frameBlock = new ItemStack(frameBlock);
 		InsectiaBlocks.livingQuartersDark = new ItemStack(livingQuartersDark);
@@ -74,6 +76,21 @@ public class ModBlocks {
 		InsectiaBlocks.livingQuartersSweet = new ItemStack(livingQuartersSweet);
 		InsectiaBlocks.statusBlock = new ItemStack(statusBlock);
 		InsectiaBlocks.insectIncubator = new ItemStack(incubatorTank);
+		
+		InsectiaAPI.dirtBlock.add(Block.dirt);
+		InsectiaAPI.dirtBlock.add(Block.grass);
+		
+		InsectiaAPI.leafBlock.add(Block.leaves);
+		
+		InsectiaAPI.sandBlock.add(Block.sand);
+		InsectiaAPI.sandBlock.add(Block.deadBush);
+		
+		InsectiaAPI.webBlock.add(Block.web);
+		InsectiaAPI.webBlock.add(Block.sapling);
+		InsectiaAPI.webBlock.add(Block.cactus);
+		InsectiaAPI.webBlock.add(Block.tallGrass);
+		InsectiaAPI.webBlock.add(Block.deadBush);
+		InsectiaAPI.webBlock.add(Block.vine);
 	}
 
 }

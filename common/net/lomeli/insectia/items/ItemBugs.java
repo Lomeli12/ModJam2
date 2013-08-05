@@ -2,7 +2,7 @@ package net.lomeli.insectia.items;
 
 import java.util.Random;
 
-import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
+import net.lomeli.insectia.api.interfaces.EnumHousingType;
 import net.lomeli.insectia.api.interfaces.IInsect;
 
 import net.minecraft.item.Item;
@@ -16,12 +16,12 @@ public class ItemBugs extends ItemGeneric implements IInsect{
 	private int dropChance;
 	private int time;
 	private int timeOfDay;
-	private EnumInsectQuartersType  quartersType;
+	private EnumHousingType  quartersType;
 	private Random randomItem = new Random();
 	private BiomeGenBase[] biomes;
 	
 	public ItemBugs(int par1, String texture, ItemStack[] producedItems, 
-		int dropChance, int time, EnumInsectQuartersType quartersType, 
+		int dropChance, int time, EnumHousingType quartersType, 
 		int lifeSpan, BiomeGenBase[] biomes, int timeOfDay) {
 		super(par1, texture);
 		this.dropChance = dropChance;
@@ -63,7 +63,7 @@ public class ItemBugs extends ItemGeneric implements IInsect{
 	public void getEffectOnNerbyEntities(World world, int x, int y, int z) {}
 
 	@Override
-	public EnumInsectQuartersType getPreferedLivingType() {
+	public EnumHousingType getPreferedLivingType() {
 		return this.quartersType;
 	}
 

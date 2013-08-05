@@ -26,7 +26,8 @@ public class ItemBugNet extends ItemTool implements IBugNet{
 	private EnumNetType netType;
 	
 	public ItemBugNet(int par1, String texture, EnumNetType type) {
-		super(par1, 0F, EnumToolMaterial.WOOD, type.getBlocks());
+		super(par1, 0F, EnumToolMaterial.WOOD, 
+			new Block[]{Block.dirt, Block.leaves, Block.grass, Block.sand, Block.web});
 		itemTexture = texture;
 		netType = type;
 		this.setCreativeTab(Insectia.modTab);
@@ -45,17 +46,17 @@ public class ItemBugNet extends ItemTool implements IBugNet{
 			for(Block destroyable : getNetType().getBlocks()){
 				if(blockID == destroyable.blockID){
 					int k = rand.nextInt(300);
-					for(Item drops : getNetType().getDrops()){
-						if(drops instanceof IInsect){
+					for(ItemStack drops : getNetType().getDrops()){
+						if(drops.getItem() instanceof IInsect){
 							boolean canDrop = false;
-							for(BiomeGenBase biomes : ((IInsect)drops).getPreferedBiome()){
+							for(BiomeGenBase biomes : ((IInsect)drops.getItem()).getPreferedBiome()){
 								if(world.getBiomeGenForCoords(x, z).biomeID == biomes.biomeID){
 									canDrop = true;
 									break;
 								}
 							}
-							if(canDrop && k < ((IInsect)drops).getDropChance()){
-								EntityItem item = new EntityItem(world, x, y, z, new ItemStack(drops, 1));
+							if(canDrop && k < ((IInsect)drops.getItem()).getDropChance()){
+								EntityItem item = new EntityItem(world, x, y, z, drops);
 								world.spawnEntityInWorld(item);
 							}
 						}

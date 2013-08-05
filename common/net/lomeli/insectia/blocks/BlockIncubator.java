@@ -1,7 +1,7 @@
 package net.lomeli.insectia.blocks;
 
 import net.lomeli.insectia.Insectia;
-import net.lomeli.insectia.api.LarvaeUtil;
+import net.lomeli.insectia.api.InsectiaAPI;
 import net.lomeli.insectia.api.interfaces.IInsect;
 import net.lomeli.insectia.api.interfaces.ILarvae;
 import net.lomeli.insectia.lib.ModStrings;
@@ -55,7 +55,7 @@ public class BlockIncubator extends BlockContainer{
 							if((tile.getStackInSlot(0) != null && 
 								tile.getStackInSlot(0).getItem() instanceof ILarvae)){
 								entityPlayer.addChatMessage("Larvae Type: " + 
-								LarvaeUtil.getInsect(tile.getStackInSlot(0)).getDisplayName());
+								InsectiaAPI.getInsect(tile.getStackInSlot(0)).getDisplayName());
 								entityPlayer.addChatMessage("Ticks Left: " + tile.getTimeLeft());
 							}else if((tile.getStackInSlot(0) != null && 
 								tile.getStackInSlot(0).getItem() instanceof IInsect)){

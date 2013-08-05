@@ -6,6 +6,11 @@ mostly for creating new Bugs and Insect Housing,
 though it allows you to access the mod's
 items as well.
 
+This API will change in the future, as this
+mod is more of a proof of concept, and  should
+I continue it, I will rewrite it to include more
+features.
+
 --General--
 
 When creating a addon for Insectia,
@@ -43,7 +48,7 @@ InsectRegistry.getInstance().registerInsect(myInsect, true);
 
 --Creating new Insect housing--
 
-Simply implement ILivingQuarters in the tileEntity
+Simply implement IHousing in the tileEntity
 of your new Insect housing. ISidedInventory/IInventory
 is also recommended
 

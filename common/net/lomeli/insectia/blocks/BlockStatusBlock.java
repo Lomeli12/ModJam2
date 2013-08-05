@@ -1,7 +1,7 @@
 package net.lomeli.insectia.blocks;
 
 import net.lomeli.insectia.api.interfaces.IInsect;
-import net.lomeli.insectia.api.interfaces.ILivingQuarters;
+import net.lomeli.insectia.api.interfaces.IHousing;
 import net.lomeli.insectia.lib.ModStrings;
 
 import net.minecraft.block.material.Material;
@@ -41,7 +41,7 @@ public class BlockStatusBlock extends BlockGeneric{
 		EntityPlayer entityPlayer, int i, float j, float k, float f){
 		if(entityPlayer != null){
 			TileEntity tile = world.getBlockTileEntity(x, y - 1, z);
-			if(tile != null &&(tile instanceof ILivingQuarters)){
+			if(tile != null &&(tile instanceof IHousing)){
 				tick++;
 				if(tick > 1){
 					if(tile instanceof IInventory){
@@ -49,12 +49,12 @@ public class BlockStatusBlock extends BlockGeneric{
 							int life = ((IInventory)tile).getStackInSlot(0).getMaxDamage() - ((IInventory)tile).getStackInSlot(0).getItemDamage();
 							entityPlayer.addChatMessage("Insect: " + ((IInventory)tile).getStackInSlot(0).getDisplayName());
 							entityPlayer.addChatMessage("Health: " + life + "/" +((IInventory)tile).getStackInSlot(0).getMaxDamage());
-							if(!((ILivingQuarters)tile).canWork((IInsect)((IInventory)tile).getStackInSlot(0).getItem()))
+							if(!((IHousing)tile).canWork((IInsect)((IInventory)tile).getStackInSlot(0).getItem()))
 								entityPlayer.addChatMessage("Sleeping...");
 						}else{
 							entityPlayer.addChatMessage("Empty...");
-							if(((ILivingQuarters)tile).getQuartersType() != null)
-								entityPlayer.addChatMessage("Type: " + ((ILivingQuarters)tile).getQuartersType().name());
+							if(((IHousing)tile).getQuartersType() != null)
+								entityPlayer.addChatMessage("Type: " + ((IHousing)tile).getQuartersType().name());
 						}
 					
 						for(int i1 = 1; i1 < ((IInventory)tile).getSizeInventory(); i1++){
@@ -66,12 +66,12 @@ public class BlockStatusBlock extends BlockGeneric{
 							int life = ((ISidedInventory)tile).getStackInSlot(0).getMaxDamage() - ((ISidedInventory)tile).getStackInSlot(0).getItemDamage();
 							entityPlayer.addChatMessage("Insect: " + ((ISidedInventory)tile).getStackInSlot(0).getDisplayName());
 							entityPlayer.addChatMessage("Health: " + life + "/" +((ISidedInventory)tile).getStackInSlot(0).getMaxDamage());
-							if(!((ILivingQuarters)tile).canWork((IInsect)((ISidedInventory)tile).getStackInSlot(0).getItem()))
+							if(!((IHousing)tile).canWork((IInsect)((ISidedInventory)tile).getStackInSlot(0).getItem()))
 								entityPlayer.addChatMessage("Sleeping...");
 						}else{
 							entityPlayer.addChatMessage("Empty...");
-							if(((ILivingQuarters)tile).getQuartersType() != null)
-								entityPlayer.addChatMessage("Type: " + ((ILivingQuarters)tile).getQuartersType().name());
+							if(((IHousing)tile).getQuartersType() != null)
+								entityPlayer.addChatMessage("Type: " + ((IHousing)tile).getQuartersType().name());
 						}
 					
 						for(int i1 = 1; i1 < ((ISidedInventory)tile).getSizeInventory(); i1++){

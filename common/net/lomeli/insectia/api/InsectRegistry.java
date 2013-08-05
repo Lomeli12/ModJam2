@@ -40,6 +40,18 @@ public class InsectRegistry {
 		registerInsect(new ItemStack(insect), bool);
 	}
 	
+	/**
+	 * DO NOT USE UNLESS YOU KNOW WHAT YOU'RE
+	 * DOING AND KNOW HOW INSECTIA WORKS!!!
+	 * @param insect
+	 * @param bool
+	 */
+	public void forceRegisterInsect(ItemStack insect, boolean bool){
+		if(bool)
+			trappedRegistry.add(insect);
+		defaultRegistry.add(insect);
+	}
+	
 	public ItemStack getRandomInsect(int rand){
 		return getTrappedRegistry().get(rand);
 	}

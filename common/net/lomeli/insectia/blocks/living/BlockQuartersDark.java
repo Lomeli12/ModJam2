@@ -83,8 +83,13 @@ public class BlockQuartersDark extends BlockContainer{
 	
 	@Override
 	public void breakBlock(World world, int x, int y, int z, int par5, int par6){
-		super.breakBlock(world, x, y, z, par5, par6);
+		if(world.getBlockId(x, y + 1, z) == ModBlocks.statusBlock.blockID){
+			world.setBlockMetadataWithNotify(x, y + 1, z, 0, 2);
+			world.markBlockForUpdate(x, y + 1, z);
+		}
 		dropItems(world, x, y, z);
+		super.breakBlock(world, x, y, z, par5, par6);
+		
 	}
 	
 	public void dropItems2(World world, int x, int y, int z){

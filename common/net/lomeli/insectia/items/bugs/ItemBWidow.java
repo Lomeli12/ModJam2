@@ -1,6 +1,6 @@
 package net.lomeli.insectia.items.bugs;
 
-import net.lomeli.insectia.api.interfaces.EnumInsectQuartersType;
+import net.lomeli.insectia.api.interfaces.EnumHousingType;
 import net.lomeli.insectia.items.ItemBugs;
 import net.lomeli.insectia.lib.ModInts;
 
@@ -23,7 +23,7 @@ public class ItemBWidow extends ItemBugs{
 	private Random rand = new Random();
 	private int updateTick;
 	public ItemBWidow(int par1, String texture, ItemStack[] producedItems, 
-			int chance, int time, EnumInsectQuartersType type, int lifeSpan, 
+			int chance, int time, EnumHousingType type, int lifeSpan, 
 			BiomeGenBase[] biomes, int day) {
 		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes, day);
 	}
@@ -34,7 +34,7 @@ public class ItemBWidow extends ItemBugs{
 			updateTick++;
 			if(updateTick >= 30){
 				int roll = rand.nextInt(100);
-				if(roll < ModInts.chanceOfBite){
+				if(roll < ModInts.chanceOfBite && !((EntityPlayer)entity).capabilities.isCreativeMode){
 					((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.id, 300, 1));
 					world.playSoundAtEntity(entity, "mob.spider.say", 0.15F, 1F);
 				}

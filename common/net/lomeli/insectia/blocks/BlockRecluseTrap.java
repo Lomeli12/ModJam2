@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 public class BlockRecluseTrap extends BlockGeneric{
 
 	public BlockRecluseTrap(int par1) {
-		super(par1, Material.cactus, "");
+		super(par1, Material.web, "");
 		this.setHardness(1F);
 	}
 	
@@ -71,6 +71,7 @@ public class BlockRecluseTrap extends BlockGeneric{
         return (l / 9 & 255) << 16 | (i1 / 9 & 255) << 8 | j1 / 9 & 255;
     }
 	
+	@Override
 	public int idDropped(int par1, Random par2Random, int par3){
 		return ModItems.bRecluseSpider.itemID;
 	}
