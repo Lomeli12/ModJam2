@@ -38,6 +38,13 @@ public class InsectiaAPI {
 		InsectRegistry.getInstance().registerInsect(item, bool);
 	}
 	
+	/**
+	 * Used by the housing tile entities to write the
+	 * 
+	 * @param itemStack
+	 * @param itemID
+	 * @param itemMeta
+	 */
 	public static void writeInsect(ItemStack itemStack, int itemID, int itemMeta){
 		if(!itemStack.hasTagCompound())
 			itemStack.setTagCompound(new NBTTagCompound());

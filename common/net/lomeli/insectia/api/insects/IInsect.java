@@ -1,6 +1,9 @@
-package net.lomeli.insectia.api.interfaces;
+package net.lomeli.insectia.api.insects;
 
-import net.minecraft.item.Item;
+import net.lomeli.insectia.api.housing.EnumHousingType;
+import net.lomeli.insectia.api.insects.EnumInsects.EnumDayCycle;
+import net.lomeli.insectia.api.insects.EnumInsects.EnumGender;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -35,9 +38,13 @@ public interface IInsect {
 	
 	public int larvaeGrowthTime();
 	
+	public EnumGender getGender();
+	
+	public int getReproductionChance();
+	
 	/**
 	 * 0 for Day, 1 for Night, anything else to ignore time.
 	 * @author Anthony
 	 */
-	public int getPreferedTimeOfDay();
+	public EnumDayCycle getPreferedTimeOfDay();
 }

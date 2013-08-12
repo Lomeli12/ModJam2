@@ -2,8 +2,8 @@ package net.lomeli.insectia.blocks;
 
 import net.lomeli.insectia.Insectia;
 import net.lomeli.insectia.api.InsectiaAPI;
-import net.lomeli.insectia.api.interfaces.IInsect;
-import net.lomeli.insectia.api.interfaces.ILarvae;
+import net.lomeli.insectia.api.insects.IInsect;
+import net.lomeli.insectia.api.insects.ILarvae;
 import net.lomeli.insectia.lib.ModStrings;
 import net.lomeli.insectia.tileentity.TileEntityIncubator;
 

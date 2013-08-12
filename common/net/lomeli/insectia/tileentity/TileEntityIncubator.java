@@ -1,7 +1,7 @@
 package net.lomeli.insectia.tileentity;
 
-import net.lomeli.insectia.api.interfaces.IInsect;
-import net.lomeli.insectia.api.interfaces.ILarvae;
+import net.lomeli.insectia.api.insects.IInsect;
+import net.lomeli.insectia.api.insects.ILarvae;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

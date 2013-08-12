@@ -1,4 +1,7 @@
-package net.lomeli.insectia.api.interfaces;
+package net.lomeli.insectia.api.housing;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 
 /**
@@ -15,6 +18,9 @@ public interface IHousing {
 	
 	public int getInsectLifePercentage();
 	
-	public boolean canWork(IInsect insect);
+	public boolean canWorkTime(World world, ItemStack itemStack);
+	
+	public boolean canWorkWeather(World world, ItemStack itemStack);
 
+	
 }

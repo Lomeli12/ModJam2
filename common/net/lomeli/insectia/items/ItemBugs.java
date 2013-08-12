@@ -2,10 +2,11 @@ package net.lomeli.insectia.items;
 
 import java.util.Random;
 
-import net.lomeli.insectia.api.interfaces.EnumHousingType;
-import net.lomeli.insectia.api.interfaces.IInsect;
+import net.lomeli.insectia.api.housing.EnumHousingType;
+import net.lomeli.insectia.api.insects.EnumInsects.EnumDayCycle;
+import net.lomeli.insectia.api.insects.EnumInsects.EnumGender;
+import net.lomeli.insectia.api.insects.IInsect;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -15,21 +16,21 @@ public class ItemBugs extends ItemGeneric implements IInsect{
 	private ItemStack[] itemsProduced;
 	private int dropChance;
 	private int time;
-	private int timeOfDay;
-	private EnumHousingType  quartersType;
+	private EnumHousingType quartersType;
+	private EnumDayCycle dayCycle;
+	private EnumGender gender;
 	private Random randomItem = new Random();
 	private BiomeGenBase[] biomes;
 	
 	public ItemBugs(int par1, String texture, ItemStack[] producedItems, 
 		int dropChance, int time, EnumHousingType quartersType, 
-		int lifeSpan, BiomeGenBase[] biomes, int timeOfDay) {
+		int lifeSpan, BiomeGenBase[] biomes) {
 		super(par1, texture);
 		this.dropChance = dropChance;
 		this.time = time;
 		this.quartersType = quartersType;
 		this.itemsProduced = producedItems;
 		this.biomes = biomes;
-		this.timeOfDay = timeOfDay;
 		this.setMaxDamage(lifeSpan);
 		this.setMaxStackSize(1);
 	}
@@ -89,8 +90,18 @@ public class ItemBugs extends ItemGeneric implements IInsect{
 	}
 
 	@Override
-	public int getPreferedTimeOfDay() {
-		return this.timeOfDay;
+	public EnumDayCycle getPreferedTimeOfDay() {
+		return this.dayCycle;
+	}
+
+	@Override
+	public EnumGender getGender() {
+		return this.gender;
+	}
+
+	@Override
+	public int getReproductionChance() {
+		return 0;
 	}
 
 }

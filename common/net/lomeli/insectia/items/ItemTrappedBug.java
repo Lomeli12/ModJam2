@@ -5,7 +5,6 @@ import java.util.Random;
 import net.lomeli.insectia.api.InsectRegistry;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

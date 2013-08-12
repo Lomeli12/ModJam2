@@ -1,7 +1,5 @@
 package net.lomeli.insectia.items;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;

@@ -1,7 +1,6 @@
 package net.lomeli.insectia.blocks;
 
-import net.lomeli.insectia.api.interfaces.IInsect;
-import net.lomeli.insectia.api.interfaces.IHousing;
+import net.lomeli.insectia.api.housing.IHousing;
 import net.lomeli.insectia.lib.ModStrings;
 
 import net.minecraft.block.material.Material;
@@ -49,8 +48,10 @@ public class BlockStatusBlock extends BlockGeneric{
 							int life = ((IInventory)tile).getStackInSlot(0).getMaxDamage() - ((IInventory)tile).getStackInSlot(0).getItemDamage();
 							entityPlayer.addChatMessage("Insect: " + ((IInventory)tile).getStackInSlot(0).getDisplayName());
 							entityPlayer.addChatMessage("Health: " + life + "/" +((IInventory)tile).getStackInSlot(0).getMaxDamage());
-							if(!((IHousing)tile).canWork((IInsect)((IInventory)tile).getStackInSlot(0).getItem()))
+							if(!((IHousing)tile).canWorkTime(world, ((IInventory)tile).getStackInSlot(0)))
 								entityPlayer.addChatMessage("Sleeping...");
+							else if(!((IHousing)tile).canWorkWeather(world, ((IInventory)tile).getStackInSlot(0)))
+								entityPlayer.addChatMessage("Can't work in this weather!");
 						}else{
 							entityPlayer.addChatMessage("Empty...");
 							if(((IHousing)tile).getQuartersType() != null)
@@ -66,8 +67,10 @@ public class BlockStatusBlock extends BlockGeneric{
 							int life = ((ISidedInventory)tile).getStackInSlot(0).getMaxDamage() - ((ISidedInventory)tile).getStackInSlot(0).getItemDamage();
 							entityPlayer.addChatMessage("Insect: " + ((ISidedInventory)tile).getStackInSlot(0).getDisplayName());
 							entityPlayer.addChatMessage("Health: " + life + "/" +((ISidedInventory)tile).getStackInSlot(0).getMaxDamage());
-							if(!((IHousing)tile).canWork((IInsect)((ISidedInventory)tile).getStackInSlot(0).getItem()))
+							if(!((IHousing)tile).canWorkTime(world, ((ISidedInventory)tile).getStackInSlot(0)))
 								entityPlayer.addChatMessage("Sleeping...");
+							else if(!((IHousing)tile).canWorkWeather(world, ((ISidedInventory)tile).getStackInSlot(0)))
+								entityPlayer.addChatMessage("Can't work in this weather!");
 						}else{
 							entityPlayer.addChatMessage("Empty...");
 							if(((IHousing)tile).getQuartersType() != null)

@@ -1,13 +1,12 @@
 package net.lomeli.insectia.items.bugs;
 
-import net.lomeli.insectia.api.interfaces.EnumHousingType;
+import net.lomeli.insectia.api.housing.EnumHousingType;
 import net.lomeli.insectia.items.ItemBugs;
 import net.lomeli.insectia.lib.ModInts;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -24,8 +23,8 @@ public class ItemBWidow extends ItemBugs{
 	private int updateTick;
 	public ItemBWidow(int par1, String texture, ItemStack[] producedItems, 
 			int chance, int time, EnumHousingType type, int lifeSpan, 
-			BiomeGenBase[] biomes, int day) {
-		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes, day);
+			BiomeGenBase[] biomes) {
+		super(par1, texture, producedItems, chance, time, type, lifeSpan, biomes);
 	}
 	
 	@Override
@@ -43,7 +42,8 @@ public class ItemBWidow extends ItemBugs{
 		}
 	}
 	
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public void getEffectOnNerbyEntities(World world, int x, int y, int z){
 		if(world != null){
 			List<Entity> nearbyEntities = world.getEntitiesWithinAABB(EntityLiving.class, 

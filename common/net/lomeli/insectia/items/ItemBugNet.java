@@ -4,16 +4,15 @@ import java.util.Random;
 
 import net.lomeli.insectia.Insectia;
 import net.lomeli.insectia.lib.ModStrings;
-import net.lomeli.insectia.api.interfaces.EnumNetType;
-import net.lomeli.insectia.api.interfaces.IBugNet;
-import net.lomeli.insectia.api.interfaces.IInsect;
+import net.lomeli.insectia.api.bugnets.EnumNetType;
+import net.lomeli.insectia.api.bugnets.IBugNet;
+import net.lomeli.insectia.api.insects.IInsect;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;

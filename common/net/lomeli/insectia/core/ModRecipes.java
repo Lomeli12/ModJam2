@@ -11,7 +11,6 @@ import net.minecraft.block.Block;
 
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModRecipes {
 	public static void loadRecipes(){

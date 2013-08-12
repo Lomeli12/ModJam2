@@ -1,14 +1,11 @@
 package net.lomeli.insectia.blocks.living;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.lomeli.insectia.Insectia;
-import net.lomeli.insectia.api.interfaces.IInsect;
+import net.lomeli.insectia.api.insects.IInsect;
 import net.lomeli.insectia.blocks.ModBlocks;
 import net.lomeli.insectia.lib.ModStrings;
 import net.lomeli.insectia.tileentity.TileEntityDark;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;

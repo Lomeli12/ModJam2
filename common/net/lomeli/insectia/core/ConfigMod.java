@@ -12,7 +12,7 @@ public class ConfigMod {
 	
 	public ConfigMod(){}
 	
-	public static void configureMod(File configFile){
+	public void configureMod(File configFile){
 		configureModItemIDs(configFile);
 		configureModBlockIDs(configFile);
 		configureModOptions(configFile);
@@ -61,6 +61,7 @@ public class ConfigMod {
 		ItemIDs.leafNetID = config.get("Tools", "leafNet", 683).getInt(683);
 		ItemIDs.treatedStickID = config.get("Items", "stick", 684).getInt(684);
 		ItemIDs.insectLarvaeID = config.get("Bugs", "insectLarvae", 685).getInt(685);
+		ItemIDs.insectClockID = config.get("Tools", "clock", 686).getInt(686);
 		
 		config.save();
 	}

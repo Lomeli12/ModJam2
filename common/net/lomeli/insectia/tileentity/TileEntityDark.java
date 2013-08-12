@@ -2,12 +2,12 @@ package net.lomeli.insectia.tileentity;
 
 import java.util.Random;
 
-import net.lomeli.insectia.Insectia;
 import net.lomeli.insectia.api.InsectiaAPI;
-import net.lomeli.insectia.api.interfaces.EnumHousingType;
-import net.lomeli.insectia.api.interfaces.EnumHousingType.EnumHousingHelper;
-import net.lomeli.insectia.api.interfaces.IHousing;
-import net.lomeli.insectia.api.interfaces.IInsect;
+import net.lomeli.insectia.api.housing.EnumHousingType;
+import net.lomeli.insectia.api.housing.IHousing;
+import net.lomeli.insectia.api.housing.EnumHousingType.EnumHousingHelper;
+import net.lomeli.insectia.api.insects.EnumInsects;
+import net.lomeli.insectia.api.insects.IInsect;
 import net.lomeli.insectia.blocks.ModBlocks;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +19,7 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class TileEntityDark extends TileEntity
 	implements IInventory, IHousing{
@@ -100,25 +101,6 @@ public class TileEntityDark extends TileEntity
 		}
 	}
 	
-	@Override
-	public boolean canWork(IInsect insect){
-		boolean canWork = true;
-		if(Insectia.limitWorkAtNight){
-			switch(insect.getPreferedTimeOfDay()){
-				case 0:
-					canWork = this.worldObj.isDaytime() 
-						|| (this.worldObj.getLightBrightness(xCoord, yCoord, zCoord) > 0.4F);
-					break;
-				case 1:
-					canWork = !this.worldObj.isDaytime();
-					break;
-				default:
-					break;
-			}
-		}	
-		return canWork;
-	}
-	
 	public boolean emptySlot(){
 		boolean slot = false;
 		for(int i = 1; i < this.inventory.length; i++){
@@ -127,7 +109,6 @@ public class TileEntityDark extends TileEntity
 				break;
 			}
 		}
-		
 		return slot;
 	}
 	
@@ -143,7 +124,8 @@ public class TileEntityDark extends TileEntity
 				this.worldObj.markBlockForUpdate(xCoord, yCoord + 1, zCoord);
 			}
 			if(this.inventory[0] != null && (this.inventory[0].getItem() instanceof IInsect)){
-				if(canWork((IInsect)this.inventory[0].getItem()) && emptySlot())
+				if(canWorkTime(this.worldObj, this.inventory[0]) && 
+					canWorkWeather(this.worldObj, this.inventory[0]) && emptySlot())
 					tick++;
 				if(tick >= ((IInsect)this.inventory[0].getItem()).getProductionTime()){
 					int j = rand.nextInt(1 + ((IInsect)this.inventory[0].getItem()).getItemsProduced().length);
@@ -259,4 +241,15 @@ public class TileEntityDark extends TileEntity
 		double percentage = this.inventory[0].getItemDamage() / (this.inventory[0].getMaxDamage() * 0.3);
 		return (int)percentage > 2 ? 2 : (int)percentage;
 	}
+
+	@Override
+	public boolean canWorkTime(World world, ItemStack insect) {
+		return EnumInsects.canWorkAtCurrentTime(world, insect);
+	}
+
+	@Override
+	public boolean canWorkWeather(World world, ItemStack itemStack) {
+		return EnumInsects.canWorkInWeather(world, itemStack);
+	}
+
 }

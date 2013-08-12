@@ -3,7 +3,7 @@ package net.lomeli.insectia.items.bugs;
 import java.util.List;
 import java.util.Random;
 
-import net.lomeli.insectia.api.interfaces.EnumHousingType;
+import net.lomeli.insectia.api.housing.EnumHousingType;
 import net.lomeli.insectia.items.ItemBugs;
 import net.lomeli.insectia.lib.ModInts;
 
@@ -11,7 +11,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -20,8 +19,8 @@ import net.minecraft.world.biome.BiomeGenBase;
 public class ItemPolyvoltineWorms extends ItemBugs{
 	public ItemPolyvoltineWorms(int par1, String texture, ItemStack[] producedItems, 
 			int dropChance, int time, EnumHousingType quartersType, int lifeSpan,
-			BiomeGenBase[] biomes, int day) {
-		super(par1, texture, producedItems, dropChance, time, quartersType, lifeSpan, biomes, day);
+			BiomeGenBase[] biomes) {
+		super(par1, texture, producedItems, dropChance, time, quartersType, lifeSpan, biomes);
 	}
 	
 	private int updateTick;
@@ -41,7 +40,8 @@ public class ItemPolyvoltineWorms extends ItemBugs{
 		}
 	}
 	
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public void getEffectOnNerbyEntities(World world, int x, int y, int z) {
 		if(world != null){
 			List<Entity> entityList = world.getEntitiesWithinAABB(EntityLiving.class, 

@@ -1,4 +1,4 @@
-package net.lomeli.insectia.api.interfaces;
+package net.lomeli.insectia.api.insects;
 
 import net.minecraft.item.ItemStack;
 

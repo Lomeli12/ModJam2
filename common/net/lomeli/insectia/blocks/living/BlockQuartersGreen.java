@@ -1,7 +1,7 @@
 package net.lomeli.insectia.blocks.living;
 
 import net.lomeli.insectia.Insectia;
-import net.lomeli.insectia.api.interfaces.IInsect;
+import net.lomeli.insectia.api.insects.IInsect;
 import net.lomeli.insectia.lib.ModStrings;
 import net.lomeli.insectia.tileentity.TileEntityGreen;
 

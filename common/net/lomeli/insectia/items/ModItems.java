@@ -5,9 +5,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.lomeli.insectia.api.InsectRegistry;
 import net.lomeli.insectia.api.InsectiaAPI;
 import net.lomeli.insectia.api.InsectiaItems;
-import net.lomeli.insectia.api.interfaces.EnumHousingType;
-import net.lomeli.insectia.api.interfaces.EnumNetType;
-import net.lomeli.insectia.api.interfaces.EnumNetType.EnumNetTypeHelper;
+import net.lomeli.insectia.api.bugnets.EnumNetType;
+import net.lomeli.insectia.api.housing.EnumHousingType;
 import net.lomeli.insectia.items.bugs.ItemBWidow;
 import net.lomeli.insectia.items.bugs.ItemFireAnts;
 import net.lomeli.insectia.items.bugs.ItemForkkEater;
@@ -64,7 +63,7 @@ public class ModItems {
 		BiomeGenBase.jungleHills, BiomeGenBase.swampland};
 	
 	/* Tools */
-	public static Item webNet, dirtNet, sandNet, leafNet;
+	public static Item webNet, dirtNet, sandNet, leafNet, insectClock;
 	
 	/* Other Items */
 	public static Item treatedStick, insectLarvae;
@@ -84,6 +83,8 @@ public class ModItems {
 		fertilizer = new ItemGeneric(ItemIDs.fertilizerID, "fertilizer").setUnlocalizedName("fertilizer");
 		treatedStick = new ItemGeneric(ItemIDs.treatedStickID, "treatedStick").setUnlocalizedName("treatedStick");
 		insectLarvae = new ItemLarvae(ItemIDs.insectLarvaeID, "larvae").setUnlocalizedName("larvae");
+		insectClock = new ItemInsectClock(ItemIDs.insectClockID).setUnlocalizedName("insectClock")
+			.setCreativeTab(null);
 		
 		spiderProduction = new ItemStack[]{ new ItemStack(stickyString), 
 			new ItemStack(trappedBug), new ItemStack(silk) };
@@ -94,31 +95,31 @@ public class ModItems {
 		
 		//Spiders
 		bRecluseSpider = new ItemBugs(ItemIDs.bRecluseSpiderID, "bugs/bRecluseSpider", 
-			spiderProduction, 13, 150, EnumHousingType.DARK, 3, spiderBiomes, 1).setUnlocalizedName("bRecluseSpider");
+			spiderProduction, 13, 150, EnumHousingType.DARK, 3, spiderBiomes).setUnlocalizedName("bRecluseSpider");
 		longLegSpider = new ItemBugs(ItemIDs.longLegSpiderID, "bugs/longLegSpider", 
-			spiderProduction, 10, 130, EnumHousingType.DARK, 4, spiderBiomes, 1).setUnlocalizedName("longLegSpider");
+			spiderProduction, 10, 130, EnumHousingType.DARK, 4, spiderBiomes).setUnlocalizedName("longLegSpider");
 		bWidowSpider = new ItemBWidow(ItemIDs.bWidowSpiderID, "bugs/bWidowSpider", 
-			spiderProduction, 15, 175, EnumHousingType.DARK, 3, spiderBiomes, 1).setUnlocalizedName("bWidownSpider");
+			spiderProduction, 15, 175, EnumHousingType.DARK, 3, spiderBiomes).setUnlocalizedName("bWidownSpider");
 		forkkEater = new ItemForkkEater(ItemIDs.forkkEaterID, "bugs/forkkEater", spiderProduction,
-			10, 100, EnumHousingType.DARK, 3, spiderBiomes, 1).setUnlocalizedName("forkkEater");
+			10, 100, EnumHousingType.DARK, 3, spiderBiomes).setUnlocalizedName("forkkEater");
 		
 		//Ants
 		fireAnts = new ItemFireAnts(ItemIDs.fireAntsID, "bugs/fireAnts", 
-			antProduction, 50, 90, EnumHousingType.SWEET, 7, antBiomes, 0).setUnlocalizedName("fireAnts");
+			antProduction, 50, 90, EnumHousingType.SWEET, 7, antBiomes).setUnlocalizedName("fireAnts");
 		armyAnts = new ItemBugs(ItemIDs.armyAntsID, "bugs/armyAnts", 
-			antProduction, 20, 75, EnumHousingType.SWEET, 10, antBiomes, 0).setUnlocalizedName("armyAnts");
+			antProduction, 20, 75, EnumHousingType.SWEET, 10, antBiomes).setUnlocalizedName("armyAnts");
 		
 		//Silk Worms
 		bivoltineWorm = new ItemBugs(ItemIDs.bivoltineWormID, "bugs/bivoltineWorm", 
-			silkProduction, 20, 125, EnumHousingType.GREEN, 10, silkWormBiomes, 0).setUnlocalizedName("greenSilkWorm");
+			silkProduction, 20, 125, EnumHousingType.GREEN, 10, silkWormBiomes).setUnlocalizedName("greenSilkWorm");
 		polyvoltineWorm = new ItemPolyvoltineWorms(ItemIDs.polyvoltineWormID, "bugs/polyvoltineWorm", silkProduction,
-			40, 60, EnumHousingType.GREEN, 10, silkWormBiomes, 0).setUnlocalizedName("redSilkWorm");
+			40, 60, EnumHousingType.GREEN, 10, silkWormBiomes).setUnlocalizedName("redSilkWorm");
 		univoltineWorm = new ItemUnivoltineWorm(ItemIDs.univoltineWormID, "bugs/univoltineWorm",
-			silkProduction, 5, 50, EnumHousingType.GREEN, 4, silkWormBiomes, 0).setUnlocalizedName("pinkSilkWorm");
+			silkProduction, 5, 50, EnumHousingType.GREEN, 4, silkWormBiomes).setUnlocalizedName("pinkSilkWorm");
 		
 		//Dung Beetle
 		dungBeetles = new ItemBugs(ItemIDs.dungBeetlesID, "bugs/dungBeetles", 
-			beetleProduction, 25, 60, EnumHousingType.SMELLY, 15, dungBiomes, -1).setUnlocalizedName("dungBeetle");
+			beetleProduction, 25, 60, EnumHousingType.SMELLY, 15, dungBiomes).setUnlocalizedName("dungBeetle");
 		
 		InsectiaItems.bRecluseSpider = new ItemStack(bRecluseSpider);
 		InsectiaItems.longLegSpider = new ItemStack(longLegSpider);
@@ -166,6 +167,7 @@ public class ModItems {
 		LanguageRegistry.addName(dirtNet, "Scoope");
 		LanguageRegistry.addName(sandNet, "Sand Shifter");
 		LanguageRegistry.addName(leafNet, "Bug Catcher");//I can't come up with a better name....
+		LanguageRegistry.addName(insectClock, "Insect Clock - DEV ITEM");
 		
 		LanguageRegistry.addName(stickyString, "Spider Silk");
 		LanguageRegistry.addName(trappedBug, "Trapped Bug");

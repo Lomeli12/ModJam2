@@ -17,8 +17,6 @@ public class WorldGenerator implements IWorldGenerator{
 	}
 	
 	public void generateOverworld(World world, Random random, int x, int y, int z){
-		int chunkX = x + random.nextInt(16);
-		int chunkZ = z + random.nextInt(16);
 		new WorldGenRecluseTrap(ModBlocks.recluseTrap.blockID).generate(world, random, x, y, z);	
 	}
 

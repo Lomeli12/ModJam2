@@ -1,12 +1,10 @@
-package net.lomeli.insectia.api.interfaces;
+package net.lomeli.insectia.api.bugnets;
 
 import java.util.List;
 
 import net.lomeli.insectia.api.InsectiaAPI;
-import net.lomeli.insectia.api.InsectiaItems;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.EnumHelper;
 
